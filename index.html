@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    button {
+      background-color:
+    }
+    </style>
+</head>
+
+<body>
+  <div id="app">
+        <button v-on:click="addLink">+</button>
+  <ol>
+    <li v-for="link in bookmarks">
+      {{link.text}}
+      </li>
+    </ol>
+
+    </div>
+
+
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        bookmarks: [
+        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
+        { text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
+        { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
+        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
+        { text: "Google", hyperlink: "https://google.com", category: "Top Links" }
+        ]
+      },
+      methods: {
+        addLink: function() {
+          app.bookmarks.push({ text: "Google", hyperlink: "https://google.com", category: "Top Links" })
+        }
+      }
+    })
+    </script>
+</body>
+
+
+</html>

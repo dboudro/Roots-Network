@@ -3,21 +3,40 @@
 
 <head>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="icon" href="favicon.png" type="image/x-icon" />
   <style>
+    body {
+      font-family: sans-serif;
+    }
     button {
       background-color:
+    }
+    ul li {
+      list-style: none;
+      height: 24px;
+    }
+    ul li a {
+      color: black;
+      text-decoration-style: red;
+    }
+    ul li a:hover {
+      background-color: #00dd00;
     }
     </style>
 </head>
 
 <body>
+  <h1> Roots.network Vue </h1>
   <div id="app">
-        <button v-on:click="addLink">+</button>
-  <ol>
+        <input type="text" v-model="newlinkname" placeholder="name">
+        <input type="text" v-model="newlinkurl" placeholder="url">
+        <button v-on:click="addLink()">+</button>
+  <ul>
     <li v-for="link in bookmarks">
-      {{link.text}}
+      <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
+      {{link.text}}</a>
       </li>
-    </ol>
+    </ul>
 
     </div>
 
@@ -27,17 +46,35 @@
     var app = new Vue({
       el: '#app',
       data: {
+        newlinkname: "",
+        newlinkurl: "",
         bookmarks: [
         { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
         { text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
         { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
         { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
         { text: "Google", hyperlink: "https://google.com", category: "Top Links" }
-        ]
+      ]
       },
+      // if there is already localstorage
+      mounted() {
+    if (localStorage.bookmarks) {
+      console.log('bookmarks exists in localstorage', localStorage.bookmarks);
+      this.bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    }
+  },
+  // if there is a change in bookmarks
+  watch: {
+    bookmarks(newBookmark) {
+      console.log("bookmarks updated. Newbookmark is:", newBookmark);
+      localStorage.setItem("bookmarks", JSON.stringify(newBookmark));
+    }
+    },
       methods: {
         addLink: function() {
-          app.bookmarks.push({ text: "Google", hyperlink: "https://google.com", category: "Top Links" })
+          app.bookmarks.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: "Top Links" })
+          app.newlinkname = "";
+          app.newlinkurl = "";
         }
       }
     })

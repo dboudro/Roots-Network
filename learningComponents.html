@@ -10,6 +10,11 @@
       font-family: caslon;
       padding: 16px 32px;
     }
+    categories-list {
+      width: 20%;
+      height: 500px;
+      border: 1px solid #eeeeee;
+    }
     button {
       border: 2px solid #eeeeee;
       height: 24px;
@@ -57,27 +62,40 @@
         <input type="text" v-model="newlinkname" placeholder="name">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
         <button v-on:click="addLink()">new</button>
-  <ul>
-    <li v-for="link in bookmarks">
-      <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
-      {{link.text}}</a>
-      </li>
-    </ul>
-
+      <!-- <categories-list> -->
+      <bookmark-category>
+    <bookmark v-for="item in bookmarks" v-bind:key="item.id"> </bookmark>
+    <bookmark-link v-bind:href=item.hyperlink target=_blank rel="noopener noreferrer"></bookmark-link>
+  </bookmark-category>
+<!-- </categories-list> -->
     </div>
 
   <script type="text/javascript">
+  Vue.component('categories-list', {
+  template: '<div></div>'
+  }),
+  Vue.component('bookmark-category', {
+  template: '<ul></ul>'
+  }),
+  Vue.component('bookmark', {
+  template: '<li></li>'
+  }),
+  Vue.component('bookmark-link', {
+  template: '<a>{{item.text}}</a>'
+})
+
     var app = new Vue({
       el: '#app',
       data: {
         newlinkname: "",
         newlinkurl: "",
+        categories: [ "Top Links", "Design", "Media Archives", "Wisdom Archives"],
         bookmarks: [
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
-        { text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
-        { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" }
+        {id: "1", text: "Google", hyperlink: "https://google.com", category: "Top Links" },
+        {id: "2", text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
+        {id: "3", text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
+        {id: "4", text: "Testing", hyperlink: "https://google.com", category: "Top Links" },
+        {id: "5", text: "Testing2", hyperlink: "https://google.com", category: "Top Links" }
       ]
       },
       // if there is already localstorage

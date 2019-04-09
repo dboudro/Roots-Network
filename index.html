@@ -11,11 +11,22 @@
       font-family: neue-haas-unica, acumin-pro, sans-serif;
       font-weight: 300;
       font-style: normal;
-      letter-spacing: .4px;
-      padding: 16px 32px;
+      padding: 16px;
+      margin: 0px;
     }
     h1 {
       font-weight: 600;
+      margin-top: 0px;
+      font-size: 2em;
+    }
+    h3 {
+      display: inline-block;
+      width: 300px;
+      margin: 8px 0px 2px 0px;
+      color: #acaaaa;
+      font-weight: 500;
+      border-bottom: 1px solid #acaaaa;
+      padding-bottom: 2px;
     }
     button {
       border: 2px solid #eeeeee;
@@ -43,9 +54,20 @@
       border: 2px solid #3486D5;
       border-opacity: .5;
       appearance: none;
-}
+    }
+    select {
+      height: 30px;
+      background-color: white;
+      border: 2px solid #eeeeee;
+    }
+    div#app {
+      height: calc(100vh - 32px);
+      border: 0px solid green;
+    }
     ul {
       padding: 0;
+      border: 0px solid red;
+      width: 300px;
     }
     ul li {
       list-style: none;
@@ -53,7 +75,7 @@
     }
     ul li a {
       color: black;
-      text-decoration-style: red;
+      text-decoration: none;
     }
     ul li a:hover {
       background-color: #34BD5E;
@@ -62,19 +84,24 @@
 </head>
 
 <body>
-  <h1> Roots Network </h1>
   <div id="app">
+      <h1> Roots Network </h1>
+        <select id="categoryDropdown" name="category">
+          <option v-for="item in categoryList" value="item">{{item}}</option>
+        </select>
         <input type="text" v-model="newlinkname" placeholder="name">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
-        <button v-on:click="addLink()">add</button>
+        <button v-on:click="addLink(mediafirms)">add</button>
   <ul>
-    <li v-for="link in bookmarks">
+    <h3>favorites</h3>
+    <li v-for="link in favorites">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}} </a>
       </li>
     </ul>
 
     <ul>
+      <h3>media firms</h3>
       <li v-for="link in mediafirms">
         <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
         {{link.text}}</a>
@@ -88,7 +115,8 @@
       data: {
         newlinkname: "",
         newlinkurl: "",
-        bookmarks: [
+        categoryList: ["favorites", "mediafirms"],
+        favorites: [
         { text: "Material Design Dev Tutorials", hyperlink: "https://material.io/collections/developer-tutorials/", category: "Top Links" },
         { text: "HackerNews", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
         { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
@@ -96,7 +124,8 @@
         { text: "How to Be Successful by Sam Altman", hyperlink: "http://blog.samaltman.com/how-to-be-successful", category: "Top Links" },
         { text: "Design in Tech Report 2019", hyperlink: "https://designintech.report/2019/03/09/design-in-tech-report-2019/", category: "Top Links" },
         { text: "Typewolf Adobe Fonts", hyperlink: "https://www.typewolf.com/adobe-fonts", category: "Top Links" },
-        { text: "Morning Rituals by Tim Ferriss ", hyperlink: "https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf", category: "Top Links" }
+        { text: "Morning Rituals by Tim Ferriss ", hyperlink: "https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf", category: "Top Links" },
+        { text: "CSSTricks ", hyperlink: "https://css-tricks.com", category: "Top Links" }
       ],
       mediafirms: [
       { text: "Pentagram", hyperlink: "http://www.pentagram.com/work/#/all/all/newest/", category: "Media Firms" },
@@ -107,21 +136,23 @@
       },
       // if there is already localstorage
       mounted() {
-    if (localStorage.bookmarks) {
-      console.log('bookmarks exists in localstorage', localStorage.bookmarks);
-      this.bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    if (localStorage.favorites) {
+      console.log('favorites exists in localstorage', localStorage.favorites);
+      this.favorites = JSON.parse(localStorage.getItem("favorites"));
     }
   },
-  // if there is a change in bookmarks
+  // if there is a change in favorites
   watch: {
-    bookmarks(newBookmark) {
-      console.log("bookmarks updated. Newbookmark is:", newBookmark);
-      localStorage.setItem("bookmarks", JSON.stringify(newBookmark));
+    favorites(newBookmark) {
+      console.log("favorites updated. Newbookmark is:", newBookmark);
+      localStorage.setItem("favorites", JSON.stringify(newBookmark));
     }
     },
       methods: {
-        addLink: function() {
-          app.bookmarks.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: "Top Links" })
+        addLink: function(category) {
+          console.log("category ", category);
+            console.log("app  ", app);
+          category.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: "Top Links" })
           app.newlinkname = "";
           app.newlinkurl = "";
         }

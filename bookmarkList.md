@@ -40,3 +40,8 @@ https://www.madfientist.com/hierarchy-of-financial-needs/
 http://blog.samaltman.com/how-to-be-successful
 https://twitter.com/naval/status/1002103360646823936
 https://www.stevebenjamins.com/blog/spotify-and-discover-weekly
+
+#Design Resources
+https://www.humaaans.com/
+http://thenounproject.com
+https://iconfinder.com

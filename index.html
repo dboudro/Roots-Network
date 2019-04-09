@@ -4,19 +4,31 @@
 <head>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://use.typekit.net/yxo8mpe.css">
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   <style>
+    @font-face {
+      font-family: Archerus;
+      src: url('fonts/acherusgrotesque-regular.otf');
+    }
+    h1 {
+      font-weight: 600;
+    }
     body {
-      font-family: caslon;
+      font-family: acumin-pro, sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: .5px;
       padding: 16px 32px;
     }
     button {
       border: 2px solid #eeeeee;
-      height: 24px;
+      height: 28px;
+      border-radius: 3px;
     }
     button:hover {
-      background-color: #59ABE3;
-      border: 2px solid #59ABE3;
+      background-color: #3486D5;
+      border: 2px solid #3486D5;
       color: white;
       cursor: pointer;
     }
@@ -28,9 +40,11 @@
       transition: border .2s;
       box-shadow: inset 0 0 0 0px #EEEEEE;
       outline-color: transparent;
+      height: 24px;
+      border-radius: 3px;
     }
     input:focus {
-      border: 2px solid #59ABE3;
+      border: 2px solid #3486D5;
       border-opacity: .5;
       appearance: none;
 }
@@ -46,7 +60,7 @@
       text-decoration-style: red;
     }
     ul li a:hover {
-      background-color: #00dd00;
+      background-color: #34BD5E;
     }
     </style>
 </head>
@@ -56,7 +70,7 @@
   <div id="app">
         <input type="text" v-model="newlinkname" placeholder="name">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
-        <button v-on:click="addLink()">new</button>
+        <button v-on:click="addLink()">add</button>
   <ul>
     <li v-for="link in bookmarks">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">

@@ -7,6 +7,7 @@ https://www.media.mit.edu/research/?filter=projects
 
 ## Design - Color
 http://www.materialui.co/colors
+https://cloudflare.design/color/
 http://www.palettable.io/
 https://coolors.co/app/550527-688e26-faa613-f44708-a10702
 https://flatuicolors.com/

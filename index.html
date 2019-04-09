@@ -7,19 +7,15 @@
   <link rel="stylesheet" href="https://use.typekit.net/yxo8mpe.css">
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   <style>
-    @font-face {
-      font-family: Archerus;
-      src: url('fonts/acherusgrotesque-regular.otf');
+    body {
+      font-family: neue-haas-unica, acumin-pro, sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: .4px;
+      padding: 16px 32px;
     }
     h1 {
       font-weight: 600;
-    }
-    body {
-      font-family: acumin-pro, sans-serif;
-      font-weight: 300;
-      font-style: normal;
-      letter-spacing: .5px;
-      padding: 16px 32px;
     }
     button {
       border: 2px solid #eeeeee;
@@ -74,7 +70,7 @@
   <ul>
     <li v-for="link in bookmarks">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
-      {{link.text}}</a>
+      {{link.text}} </a>
       </li>
     </ul>
 
@@ -93,12 +89,14 @@
         newlinkname: "",
         newlinkurl: "",
         bookmarks: [
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
+        { text: "Material Design Dev Tutorials", hyperlink: "https://material.io/collections/developer-tutorials/", category: "Top Links" },
         { text: "HackerNews", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
         { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
         { text: "How to Get Rich by Naval Ravikant", hyperlink: "https://twitter.com/naval/status/1002103360646823936", category: "Top Links" },
         { text: "How to Be Successful by Sam Altman", hyperlink: "http://blog.samaltman.com/how-to-be-successful", category: "Top Links" },
-        { text: "Design in Tech Report 2019", hyperlink: "https://designintech.report/2019/03/09/design-in-tech-report-2019/", category: "Top Links" }
+        { text: "Design in Tech Report 2019", hyperlink: "https://designintech.report/2019/03/09/design-in-tech-report-2019/", category: "Top Links" },
+        { text: "Typewolf Adobe Fonts", hyperlink: "https://www.typewolf.com/adobe-fonts", category: "Top Links" },
+        { text: "Morning Rituals by Tim Ferriss ", hyperlink: "https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf", category: "Top Links" }
       ],
       mediafirms: [
       { text: "Pentagram", hyperlink: "http://www.pentagram.com/work/#/all/all/newest/", category: "Media Firms" },

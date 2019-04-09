@@ -91,11 +91,11 @@
   <div id="app">
       <h1> Roots Network </h1>
         <select id="categoryDropdown" name="category">
-          <option v-for="item in categoryList" value="item">{{item}}</option>
+          <option v-for="item in categoryList" v-bind:selectedCategory="item" value="item">{{item}}</option>
         </select>
         <input type="text" v-model="newlinkname" placeholder="name">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
-        <button v-on:click="addLink(mediafirms)">add</button>
+        <button v-on:click="addLink(selectedCategory)">add</button>
   <ul>
     <h3>favorites</h3>
     <li v-for="link in favorites">
@@ -119,23 +119,24 @@
       data: {
         newlinkname: "",
         newlinkurl: "",
+        selectedCategory: "",
         categoryList: ["favorites", "mediafirms"],
         favorites: [
-        { text: "Material Design Dev Tutorials", hyperlink: "https://material.io/collections/developer-tutorials/", category: "Top Links" },
-        { text: "HackerNews", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
-        { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
-        { text: "How to Get Rich by Naval Ravikant", hyperlink: "https://twitter.com/naval/status/1002103360646823936", category: "Top Links" },
-        { text: "How to Be Successful by Sam Altman", hyperlink: "http://blog.samaltman.com/how-to-be-successful", category: "Top Links" },
-        { text: "Design in Tech Report 2019", hyperlink: "https://designintech.report/2019/03/09/design-in-tech-report-2019/", category: "Top Links" },
-        { text: "Typewolf Adobe Fonts", hyperlink: "https://www.typewolf.com/adobe-fonts", category: "Top Links" },
-        { text: "Morning Rituals by Tim Ferriss ", hyperlink: "https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf", category: "Top Links" },
-        { text: "CSSTricks ", hyperlink: "https://css-tricks.com", category: "Top Links" }
+        { text: "Material Design Dev Tutorials", hyperlink: "https://material.io/collections/developer-tutorials/"},
+        { text: "HackerNews", hyperlink: "https://news.ycombinator.com/"},
+        { text: "Zenhabits", hyperlink: "https://zenhabits.net"},
+        { text: "How to Get Rich by Naval Ravikant", hyperlink: "https://twitter.com/naval/status/1002103360646823936"},
+        { text: "How to Be Successful by Sam Altman", hyperlink: "http://blog.samaltman.com/how-to-be-successful"},
+        { text: "Design in Tech Report 2019", hyperlink: "https://designintech.report/2019/03/09/design-in-tech-report-2019/"},
+        { text: "Typewolf Adobe Fonts", hyperlink: "https://www.typewolf.com/adobe-fonts"},
+        { text: "Morning Rituals by Tim Ferriss ", hyperlink: "https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf"},
+        { text: "CSSTricks ", hyperlink: "https://css-tricks.com"}
       ],
       mediafirms: [
-      { text: "Pentagram", hyperlink: "http://www.pentagram.com/work/#/all/all/newest/", category: "Media Firms" },
-      { text: "Sagmeister & Walsh", hyperlink: "https://sagmeisterwalsh.com/work/", category: "Media Firms" },
-      { text: "Harvard Meta Lab", hyperlink: "https://metalabharvard.github.io/", category: "Media Firms" },
-      { text: "MIT Media Lab", hyperlink: "https://www.media.mit.edu/research/?filter=projects", category: "Media Firms" }
+      { text: "Pentagram", hyperlink: "http://www.pentagram.com/work/#/all/all/newest/"},
+      { text: "Sagmeister & Walsh", hyperlink: "https://sagmeisterwalsh.com/work/"},
+      { text: "Harvard Meta Lab", hyperlink: "https://metalabharvard.github.io/"},
+      { text: "MIT Media Lab", hyperlink: "https://www.media.mit.edu/research/?filter=projects"}
     ]
       },
       // if there is already localstorage
@@ -154,8 +155,10 @@
     },
       methods: {
         addLink: function(category) {
-          console.log("category ", category);
-            console.log("app  ", app);
+          // let dropdown = document.getElementById('categoryDropdown');
+          // console.log(dropdown.options[dropdown.selectedIndex].value);
+           console.log("category ", category);
+          // console.log("app  ", app);
           category.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: "Top Links" })
           app.newlinkname = "";
           app.newlinkurl = "";

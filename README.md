@@ -9,6 +9,6 @@ Brian Norgard, The "architect of the top grossing app in the world", ![tweeted](
 
 ## How is it built
 
-The application currently uses Vue.js for view/model creation and stores the list of links in localstorage.  I hope to add 0auth user registration and a more comprehensive backend soon.
+The application currently uses Vue.js for view/model/controller creation and stores the lists of links in localstorage.  I hope to add 0auth user registration and a more comprehensive backend soon.
 
 I greatly appreciate any pull requests and help with development! Please feel free to reach out to collaborate on this project with me. `Dylanrboudro@gmail.com`

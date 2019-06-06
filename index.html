@@ -1,90 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="https://use.typekit.net/yxo8mpe.css">
+  <link rel="stylesheet" href="css/index.css">
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
-  <style>
-    body {
-      font-family: neue-haas-unica, acumin-pro, sans-serif;
-      font-weight: 300;
-      font-style: normal;
-      padding: 16px;
-      margin: 0px;
-    }
-    h1 {
-      font-weight: 600;
-      margin-top: 0px;
-      font-size: 2em;
-    }
-    h3 {
-      font-size:
-      display: inline-block;
-      width: 300px;
-      margin: 25px 0px -1px 0px;
-      color: #acaaaa;
-      font-weight: 500;
-      /* border-bottom: 1px solid #acaaaa; */
-      padding-bottom: 2px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
-    }
-    button {
-      border: 2px solid #eeeeee;
-      height: 28px;
-      border-radius: 3px;
-    }
-    button:hover {
-      background-color: #3486D5;
-      border: 2px solid #3486D5;
-      color: white;
-      cursor: pointer;
-    }
-    input {
-      font-size: 14px;
-      border: 2px solid #eeeeee;
-      border-radius: 1px;
-      outline: none;
-      transition: border .2s;
-      box-shadow: inset 0 0 0 0px #EEEEEE;
-      outline-color: transparent;
-      height: 24px;
-      border-radius: 3px;
-    }
-    input:focus {
-      border: 2px solid #3486D5;
-      border-opacity: .5;
-      appearance: none;
-    }
-    select {
-      height: 30px;
-      background-color: white;
-      border: 2px solid #eeeeee;
-    }
-    div#app {
-      height: calc(100vh - 32px);
-      border: 0px solid green;
-    }
-    ul {
-      padding: 0;
-      border: 0px solid red;
-      width: 300px;
-    }
-    ul li {
-      list-style: none;
-      height: 24px;
-    }
-    ul li a {
-      color: black;
-      text-decoration: none;
-    }
-    ul li a:hover {
-      background-color: #34BD5E;
-    }
-    </style>
 </head>
 
 <body>
@@ -95,7 +16,7 @@
         </select>
         <input type="text" v-model="newlinkname" placeholder="name">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
-        <button v-on:click="addLink(selectedCategory)">add</button>
+        <button v-on:click="addLink()">add</button>
   <ul>
     <h3>favorites</h3>
     <li v-for="link in favorites">
@@ -114,61 +35,60 @@
     </div>
 
   <script type="text/javascript">
-    var app = new Vue({
-      el: '#app',
-      data: {
-        newlinkname: "",
-        newlinkurl: "",
-        selectedCategory: "",
-        categoryList: ["favorites", "mediafirms"],
-        favorites: [
-        { text: "Material Design Dev Tutorials", hyperlink: "https://material.io/collections/developer-tutorials/"},
-        { text: "HackerNews", hyperlink: "https://news.ycombinator.com/"},
-        { text: "Zenhabits", hyperlink: "https://zenhabits.net"},
-        { text: "How to Get Rich by Naval Ravikant", hyperlink: "https://twitter.com/naval/status/1002103360646823936"},
-        { text: "How to Be Successful by Sam Altman", hyperlink: "http://blog.samaltman.com/how-to-be-successful"},
-        { text: "Design in Tech Report 2019", hyperlink: "https://designintech.report/2019/03/09/design-in-tech-report-2019/"},
-        { text: "1000 True Fans", hyperlink: "https://kk.org/thetechnium/1000-true-fans/"},
-        { text: "Typewolf Adobe Fonts", hyperlink: "https://www.typewolf.com/adobe-fonts"},
-        { text: "Morning Rituals by Tim Ferriss ", hyperlink: "https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf"},
-        { text: "CSSTricks ", hyperlink: "https://css-tricks.com"},
-        { text: "Google 2004 Founder Letter", hyperlink: "https://abc.xyz/investor/founders-letters/2004-ipo-letter/"}
-      ],
-      mediafirms: [
-      { text: "Pentagram", hyperlink: "http://www.pentagram.com/work/#/all/all/newest/"},
-      { text: "Sagmeister & Walsh", hyperlink: "https://sagmeisterwalsh.com/work/"},
-      { text: "Harvard Meta Lab", hyperlink: "https://metalabharvard.github.io/"},
-      { text: "MIT Media Lab", hyperlink: "https://www.media.mit.edu/research/?filter=projects"}
+var app = new Vue({
+  el: '#app',
+  data: {
+    newlinkname: '',
+    newlinkurl: '',
+    selectedCategory: '',
+    categoryList: ['favorites', 'mediafirms'],
+    favorites: [
+      { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/' },
+      { text: 'HackerNews', hyperlink: 'https://news.ycombinator.com/' },
+      { text: 'Zenhabits', hyperlink: 'https://zenhabits.net' },
+      { text: 'How to Get Rich by Naval Ravikant', hyperlink: 'https://twitter.com/naval/status/1002103360646823936' },
+      { text: 'How to Be Successful by Sam Altman', hyperlink: 'http://blog.samaltman.com/how-to-be-successful' },
+      { text: 'Design in Tech Report 2019', hyperlink: 'https://designintech.report/2019/03/09/design-in-tech-report-2019/' },
+      { text: '1000 True Fans', hyperlink: 'https://kk.org/thetechnium/1000-true-fans/' },
+      { text: 'Typewolf Adobe Fonts', hyperlink: 'https://www.typewolf.com/adobe-fonts' },
+      { text: 'Morning Rituals by Tim Ferriss ', hyperlink: 'https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf' },
+      { text: 'CSSTricks ', hyperlink: 'https://css-tricks.com' },
+      { text: 'Google 2004 Founder Letter', hyperlink: 'https://abc.xyz/investor/founders-letters/2004-ipo-letter/' }
+    ],
+    mediafirms: [
+      { text: 'Pentagram', hyperlink: 'http://www.pentagram.com/work/#/all/all/newest/' },
+      { text: 'Sagmeister & Walsh', hyperlink: 'https://sagmeisterwalsh.com/work/' },
+      { text: 'Harvard Meta Lab', hyperlink: 'https://metalabharvard.github.io/' },
+      { text: 'MIT Media Lab', hyperlink: 'https://www.media.mit.edu/research/?filter=projects' }
     ]
-      },
-      // if there is already localstorage
-      mounted() {
+  },
+  // if there is already localstorage
+  mounted () {
     if (localStorage.favorites) {
-      console.log('favorites exists in localstorage', localStorage.favorites);
-      this.favorites = JSON.parse(localStorage.getItem("favorites"));
+      console.log('favorites exists in localstorage', localStorage.favorites)
+      this.favorites = JSON.parse(localStorage.getItem('favorites'))
     }
   },
   // if there is a change in favorites
   watch: {
-    favorites(newBookmark) {
-      console.log("favorites updated. Newbookmark is:", newBookmark);
-      localStorage.setItem("favorites", JSON.stringify(newBookmark));
+    favorites (newBookmark) {
+      console.log('favorites updated. Newbookmark is:', newBookmark)
+      localStorage.setItem('favorites', JSON.stringify(newBookmark))
     }
-    },
-      methods: {
-        addLink: function(category) {
-          // let dropdown = document.getElementById('categoryDropdown');
-          // console.log(dropdown.options[dropdown.selectedIndex].value);
-           console.log("category ", category);
-          // console.log("app  ", app);
-          category.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: "Top Links" })
-          app.newlinkname = "";
-          app.newlinkurl = "";
-        }
+  },
+  methods: {
+    addLink: function (test) {
+      let dropdown = document.getElementById('categoryDropdown')
+      let selectedCategory = dropdown.options[dropdown.selectedIndex].getAttribute('selectedCategory')
+
+      if (selectedCategory === 'favorites') {
+        app.favorites.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: 'Top Links' })
+      } else {
+        app.mediafirms.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: 'Top Links' })
       }
-    })
-    </script>
+    }
+  }
+})
+</script>
 </body>
-
-
 </html>

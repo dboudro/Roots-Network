@@ -5,12 +5,13 @@
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="https://use.typekit.net/yxo8mpe.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/dragula.min.css">
 
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
 </head>
 
 <body>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/$VERSION/dragula.min.js'></script>
+  <script src='js/dragula.min.js'></script>
   <div id="app">
       <h1> Roots Network </h1>
         <select id="categoryDropdown" name="category">
@@ -19,7 +20,7 @@
         <input type="text" v-model="newlinkname" placeholder="name">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
         <button v-on:click="addLink()">add</button>
-  <ul>
+  <ul id="favorites-category">
     <h3>favorites</h3>
     <li v-for="link in favorites">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
@@ -29,7 +30,7 @@
 
     </ul>
 
-    <ul>
+    <ul id="firms-category">
       <h3>media firms</h3>
       <li v-for="link in mediafirms">
         <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
@@ -99,6 +100,9 @@ var app = new Vue({
     }
   }
 })
+
+// Dragula JS
+dragula([document.querySelector('#favorites-category'), document.querySelector('#firms-category')]);
 </script>
 </body>
 </html>

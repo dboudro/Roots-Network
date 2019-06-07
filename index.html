@@ -22,7 +22,9 @@
     <li v-for="link in favorites">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}} </a>
+            <button class="remove-button" v-on:click="removeLink(link)">x</button>
       </li>
+
     </ul>
 
     <ul>
@@ -85,6 +87,12 @@ var app = new Vue({
         app.favorites.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: 'Top Links' })
       } else {
         app.mediafirms.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: 'Top Links' })
+      }
+    },
+    removeLink: function (link) {
+      let linkLocation = app.favorites.indexOf(link)
+      if (linkLocation !== -1) {
+        app.favorites.splice(linkLocation, 1)
       }
     }
   }

@@ -17,12 +17,12 @@
         <select id="categoryDropdown" name="category">
           <option v-for="item in categoryList" v-bind:selectedCategory="item" value="item">{{item}}</option>
         </select>
-        <input type="text" v-model="newlinkname" placeholder="name">
+        <input type="text" v-model="newlinkname" placeholder="website">
         <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
         <button v-on:click="addLink()">add</button>
   <ul id="favorites-category">
     <h3>favorites</h3>
-    <li v-for="link in favorites">
+    <li v-for="link in favorites" v-bind:hyperlink=link.hyperlink v-bind:name=link.text v-bind:id=link.id>
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}} </a>
             <button class="remove-button" v-on:click="removeLink(link)">x</button>
@@ -32,9 +32,10 @@
 
     <ul id="firms-category">
       <h3>media firms</h3>
-      <li v-for="link in mediafirms">
+      <li v-for="link in mediafirms" v-bind:hyperlink=link.hyperlink v-bind:name=link.text v-bind:id=link.id>
         <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
         {{link.text}}</a>
+            <button class="remove-button" v-on:click="removeLink(link)">x</button>
         </li>
       </ul>
     </div>
@@ -48,17 +49,17 @@ var app = new Vue({
     selectedCategory: '',
     categoryList: ['favorites', 'mediafirms'],
     favorites: [
-      { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/' },
-      { text: 'HackerNews', hyperlink: 'https://news.ycombinator.com/' },
-      { text: 'Zenhabits', hyperlink: 'https://zenhabits.net' },
-      { text: 'How to Get Rich by Naval Ravikant', hyperlink: 'https://twitter.com/naval/status/1002103360646823936' },
-      { text: 'How to Be Successful by Sam Altman', hyperlink: 'http://blog.samaltman.com/how-to-be-successful' },
-      { text: 'Design in Tech Report 2019', hyperlink: 'https://designintech.report/2019/03/09/design-in-tech-report-2019/' },
-      { text: '1000 True Fans', hyperlink: 'https://kk.org/thetechnium/1000-true-fans/' },
-      { text: 'Typewolf Adobe Fonts', hyperlink: 'https://www.typewolf.com/adobe-fonts' },
-      { text: 'Morning Rituals by Tim Ferriss ', hyperlink: 'https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf' },
-      { text: 'CSSTricks ', hyperlink: 'https://css-tricks.com' },
-      { text: 'Google 2004 Founder Letter', hyperlink: 'https://abc.xyz/investor/founders-letters/2004-ipo-letter/' }
+      { id: Math.random(), text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/' },
+      { id: Math.random(), text: 'HackerNews', hyperlink: 'https://news.ycombinator.com/' },
+      { id: Math.random(), text: 'Zenhabits', hyperlink: 'https://zenhabits.net' },
+      { id: Math.random(), text: 'How to Get Rich by Naval Ravikant', hyperlink: 'https://twitter.com/naval/status/1002103360646823936' },
+      { id: Math.random(), text: 'How to Be Successful by Sam Altman', hyperlink: 'http://blog.samaltman.com/how-to-be-successful' },
+      { id: Math.random(), text: 'Design in Tech Report 2019', hyperlink: 'https://designintech.report/2019/03/09/design-in-tech-report-2019/' },
+      { id: Math.random(), text: '1000 True Fans', hyperlink: 'https://kk.org/thetechnium/1000-true-fans/' },
+      { id: Math.random(), text: 'Typewolf Adobe Fonts', hyperlink: 'https://www.typewolf.com/adobe-fonts' },
+      { id: Math.random(), text: 'Morning Rituals by Tim Ferriss ', hyperlink: 'https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf' },
+      { id: Math.random(), text: 'CSSTricks ', hyperlink: 'https://css-tricks.com' },
+      { id: Math.random(), text: 'Google 2004 Founder Letter', hyperlink: 'https://abc.xyz/investor/founders-letters/2004-ipo-letter/' }
     ],
     mediafirms: [
       { text: 'Pentagram', hyperlink: 'http://www.pentagram.com/work/#/all/all/newest/' },
@@ -70,8 +71,12 @@ var app = new Vue({
   // if there is already localstorage
   mounted () {
     if (localStorage.favorites) {
-      console.log('favorites exists in localstorage', localStorage.favorites)
+      // console.log('favorites exists in localstorage', localStorage.favorites)
       this.favorites = JSON.parse(localStorage.getItem('favorites'))
+    }
+    if (localStorage.mediafirms) {
+      // console.log('favorites exists in localstorage', localStorage.favorites)
+      this.mediafirms = JSON.parse(localStorage.getItem('mediafirms'))
     }
   },
   // if there is a change in favorites
@@ -79,6 +84,10 @@ var app = new Vue({
     favorites (newBookmark) {
       console.log('favorites updated. Newbookmark is:', newBookmark)
       localStorage.setItem('favorites', JSON.stringify(newBookmark))
+    },
+    mediafirms (newBookmark) {
+      console.log('mediafirms updated. Newbookmark is:', newBookmark)
+      localStorage.setItem('mediafirms', JSON.stringify(newBookmark))
     }
   },
   methods: {
@@ -96,13 +105,35 @@ var app = new Vue({
       let linkLocation = app.favorites.indexOf(link)
       if (linkLocation !== -1) {
         app.favorites.splice(linkLocation, 1)
+      } else {
+        linkLocation = app.mediafirms.indexOf(link)
+        app.mediafirms.splice(linkLocation, 1)
+      }
+    },
+    // INPUT list of links
+    // RETURN
+    getLinkByID: function (givenID) {
+      for (let linkIndex = 0; linkIndex < app.favorites.length; linkIndex++) {
+        if (app.favorites[linkIndex].id === parseFloat(givenID)) {
+          console.log('equal')
+          return app.favorites[linkIndex]
+        }
       }
     }
   }
 })
 
 // Dragula JS
-dragula([document.querySelector('#favorites-category'), document.querySelector('#firms-category')]);
+dragula([document.querySelector('#favorites-category'), document.querySelector('#firms-category')])
+  .on('drop', function (el, source, handle, sibling) {
+    console.log('drop event. \n el: ', el, ' \n source: ', source, ' \n handle: ', handle, ' \n sibling: ', sibling)
+    console.log(el.getAttribute('id'))
+    let droppedLink = app.getLinkByID(el.getAttribute('id'))
+    console.log('droppedlink', droppedLink)
+    // el gets removed from category list handle, moved to source
+    console.log('handle', handle)
+  })
+
 </script>
 </body>
 </html>

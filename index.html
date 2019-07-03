@@ -7,7 +7,7 @@
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   <style>
     body {
-      font-family: caslon;
+      font-family: Helvetica;
       padding: 16px 32px;
     }
     button {
@@ -42,11 +42,20 @@
       height: 24px;
     }
     ul li a {
-      color: black;
-      text-decoration-style: red;
+      color: #acaaaa;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+
     }
-    ul li a:hover {
-      background-color: #00dd00;
+    ul li:hover {
+      background-color: #dddddd;
+    }
+    .bookmark-item {
+      height: 64px;
+      border-bottom: 1px solid #acaaaa;
+      width: 100%;
+      padding: 16px;
     }
     </style>
 </head>
@@ -54,48 +63,29 @@
 <body>
   <h1> Roots Network </h1>
   <div id="app">
-        <input type="text" v-model="newlinkname" placeholder="name">
-        <input type="url" pattern="https?://.+" v-model="newlinkurl" placeholder="url">
-        <button v-on:click="addLink()">new</button>
+    <input type="text" name="search" value="">
   <ul>
-    <li v-for="link in bookmarks">
+    <li class="bookmark-item" v-for="link in bookmarks">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
+        <p> {{link.description}} </p>
       {{link.text}}</a>
       </li>
     </ul>
-
     </div>
-
 
 
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
       data: {
-        newlinkname: "",
-        newlinkurl: "",
         bookmarks: [
         { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
-        { text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links" },
+        { text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links"},
         { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
         { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
         { text: "Google", hyperlink: "https://google.com", category: "Top Links" }
       ]
       },
-      // if there is already localstorage
-      mounted() {
-    if (localStorage.bookmarks) {
-      console.log('bookmarks exists in localstorage', localStorage.bookmarks);
-      this.bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-    }
-  },
-  // if there is a change in bookmarks
-  watch: {
-    bookmarks(newBookmark) {
-      console.log("bookmarks updated. Newbookmark is:", newBookmark);
-      localStorage.setItem("bookmarks", JSON.stringify(newBookmark));
-    }
-    },
       methods: {
         addLink: function() {
           app.bookmarks.push({ text: app.newlinkname, hyperlink: app.newlinkurl, category: "Top Links" })

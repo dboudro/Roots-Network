@@ -6,28 +6,59 @@
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   <style>
+
+    /* RGB 
+$color1: rgba(6, 7, 14, 1);
+$color2: rgba(41, 82, 74, 1);
+$color3: rgba(148, 161, 135, 1);
+$color4: rgba(197, 175, 160, 1);
+$color5: rgba(233, 188, 183, 1);
+
+*/
     body {
       font-family: Helvetica;
       padding: 16px 32px;
     }
+    h1.page-title{
+      display: inline-block;
+      font-size: 28px;
+      margin-left: 16px;
+      position: absolute;
+      top: 16px;
+    }
+    small {
+      margin-left: 16px;
+      position: absolute;
+      top: 66px;
+      color: rgba(148, 161, 135, 1);
+    }
     button {
-      border: 2px solid #eeeeee;
+      border: 2px solid #94a187;
       height: 24px;
+      background-color: #94a187;
+      color: white;
+      border-radius: 2px;
     }
     button:hover {
-      background-color: #59ABE3;
-      border: 2px solid #59ABE3;
+      background-color: #c5afa0;
+      border: 2px solid #c5afa0;
       color: white;
       cursor: pointer;
     }
     input {
-      font-size: 14px;
-      border: 2px solid #eeeeee;
+      font-size: 28px;
+      border: 1px solid #dddddd;
       border-radius: 1px;
       outline: none;
       transition: border .2s;
       box-shadow: inset 0 0 0 0px #EEEEEE;
       outline-color: transparent;
+      height: 32px;
+      width: 350px;
+      border-radius: 2px;
+     position: absolute;
+     right: 48px;
+     top: 32px;
     }
     input:focus {
       border: 2px solid #59ABE3;
@@ -35,40 +66,50 @@
       appearance: none;
 }
     ul {
-      padding: 0;
+      margin-top: 80px;
+      padding: 0px 0 0 0;
+      border-top: 1px solid #dddddd;
     }
     ul li {
       list-style: none;
       height: 24px;
     }
     ul li a {
-      color: #acaaaa;
+      color: #29524a;
       text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 24px;
+      font-weight: light;
 
     }
     ul li:hover {
-      background-color: #dddddd;
+      background-color: #eeeeee;
+      cursor: pointer;
     }
     .bookmark-item {
-      height: 64px;
+      height: 88px;
       border-bottom: 1px solid #acaaaa;
       width: 100%;
-      padding: 16px;
+      padding: 24px 16px 16px 16px;
+    }
+    .bookmark-item p {
+      font-size: 12px;
+      color: black;
     }
     </style>
 </head>
 
 <body>
-  <h1> Roots Network </h1>
+ 
   <div id="app">
+     <h1 class="page-title"> Roots Network </h1>
+     <small> Stay connected </small>
     <input type="text" name="search" value="">
   <ul>
     <li class="bookmark-item" v-for="link in bookmarks">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
-        <p> {{link.description}} </p>
       {{link.text}}</a>
+       <p> {{link.description}} </p>
+       <button> {{link.tag}} </button>
       </li>
     </ul>
     </div>
@@ -78,13 +119,24 @@
     var app = new Vue({
       el: '#app',
       data: {
-        bookmarks: [
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
-        { text: "Ycombinator", hyperlink: "https://news.ycombinator.com/", category: "Top Links"},
-        { text: "Zenhabits", hyperlink: "https://zenhabits.net", category: "Top Links" },
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" },
-        { text: "Google", hyperlink: "https://google.com", category: "Top Links" }
-      ]
+         bookmarks: [
+      { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Awesome Vue.js Resources', hyperlink: 'https://github.com/vuejs/awesome-vue#youtube-channels', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'HackerNews', hyperlink: 'https://news.ycombinator.com/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Zenhabits', hyperlink: 'https://zenhabits.net', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'How to Get Rich by Naval Ravikant', hyperlink: 'https://twitter.com/naval/status/1002103360646823936', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'How to Be Successful by Sam Altman', hyperlink: 'http://blog.samaltman.com/how-to-be-successful', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Design in Tech Report 2019', hyperlink: 'https://designintech.report/2019/03/09/design-in-tech-report-2019/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: '1000 True Fans', hyperlink: 'https://kk.org/thetechnium/1000-true-fans/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Typewolf Adobe Fonts', hyperlink: 'https://www.typewolf.com/adobe-fonts', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Morning Rituals by Tim Ferriss ', hyperlink: 'https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'CSSTricks ', hyperlink: 'https://css-tricks.com', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Google 2004 Founder Letter', hyperlink: 'https://abc.xyz/investor founders-letters/2004-ipo-letter/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Pentagram', hyperlink: 'http://www.pentagram.com/work/#/all/all/newest/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Sagmeister & Walsh', hyperlink: 'https://sagmeisterwalsh.com/work/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'Harvard Meta Lab', hyperlink: 'https://metalabharvard.github.io/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
+      { text: 'MIT Media Lab', hyperlink: 'https://www.media.mit.edu/research/?filter=projects', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ' }
+    ]
       },
       methods: {
         addLink: function() {

@@ -106,9 +106,9 @@ $color5: rgba(233, 188, 183, 1);
   <div id="app">
      <h1 class="page-title"> Roots Network </h1>
      <small> Stay connected </small>
-    <input type="text" id="searchbar" name="search" value="">
+    <input type="text" v-model='search' id="searchbar" name="search" value="">
   <ul>
-    <li class="bookmark-item" v-for="link in bookmarks">
+    <li class="bookmark-item" v-for="link in filteredBookmarks">
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}}</a>
        <p> {{link.description}} </p>
@@ -122,6 +122,7 @@ $color5: rgba(233, 188, 183, 1);
     var app = new Vue({
       el: '#app',
       data: {
+        search: '',
          bookmarks: [
       { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
       { text: 'Awesome Vue.js Resources', hyperlink: 'https://github.com/vuejs/awesome-vue#youtube-channels', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
@@ -143,7 +144,15 @@ $color5: rgba(233, 188, 183, 1);
       },
       methods: {
 
-    }})
+    },
+    computed: {
+      filteredBookmarks: function() {
+        return this.bookmarks.filter((bookmark) => {
+          return bookmark.text.toLowerCase().match(this.search.toLowerCase()); 
+        });
+      }
+    }
+  })
     </script>
 </body>
 

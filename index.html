@@ -45,7 +45,7 @@ $color5: rgba(233, 188, 183, 1);
       color: white;
       cursor: pointer;
     }
-    input {
+    #searchbar {
       font-size: 20px;
       border: 1px solid #dddddd;
       border-radius: 1px;
@@ -105,6 +105,23 @@ $color5: rgba(233, 188, 183, 1);
       font-size: 12px;
       color: black;
     }
+    #submit-form {
+      margin-left: 300px;
+      position: absolute;
+      top: 16px;
+      width: 400px;
+      height: 80px;
+      border: 1px solid #dddddd;
+    }
+    #submit-form input {
+      width: 292px;
+      height: 19px;
+    }
+    #new-bookmark-button{
+      position: absolute;
+      top: 32px;
+      margin-left: 300px;
+    }
     </style>
 </head>
 
@@ -113,6 +130,13 @@ $color5: rgba(233, 188, 183, 1);
   <div id="app">
      <h1 class="page-title"> Roots Network </h1>
      <small> Stay connected </small>
+     <div v-if='show' id="submit-form">
+      <input class="half-input" type="text" v-model="newlinkname" placeholder="name">
+        <input class="half-input" type="text" v-model="newlinkurl" placeholder="url">
+        <input type="text" v-model="newlinkdescription" placeholder="description">
+        <button v-on:click="addLink()">submitted</button>
+     </div>
+    <button v-else id="new-bookmark-button" v-on:click="toggleShow()"> Add New Bookmark </button>
     <input type="text" v-model='search' id="searchbar" name="search" value="">
   <ul>
     <li class="bookmark-item" v-for="link in filteredBookmarks">
@@ -129,6 +153,10 @@ $color5: rgba(233, 188, 183, 1);
     var app = new Vue({
       el: '#app',
       data: {
+        show: false,
+        newlinkname: "",
+        newlinkurl: "",
+        newlinkdescription: "",
         search: '',
          bookmarks: [
       { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. Vestibulum luctus dictum volutpat. Etiam nec ligula mauris. Quisque a. ', tag: 'website-gallery'},
@@ -150,6 +178,23 @@ $color5: rgba(233, 188, 183, 1);
     ]
       },
       methods: {
+        addLink: function() {
+          app.bookmarks.push({ text: app.newlinkname, hyperlink: app.newlinkurl, description: app.newlinkdescription})
+          app.newlinkname = "";
+          app.newlinkurl = "";
+          app.newlinkdescription = "";
+          this.toggleShow()
+        },
+        toggleShow: function() {
+          console.log(app.show)
+          app.show = !app.show
+        },
+        post: function() {
+          this.$http.post('https://roots-network-69742.firebaseio.com/posts.json', this.bookmark).then(function(data) {
+            console.log(data)
+            this.submitted=true;
+          })
+        }
     },
     computed: {
       filteredBookmarks: function() {

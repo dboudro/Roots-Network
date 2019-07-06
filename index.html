@@ -106,7 +106,7 @@ $color5: rgba(233, 188, 183, 1);
       border-radius: 4px;
       margin: 8px;
       width: calc(30% - 14px);
-      padding: 0px 16px 44px 16px;
+      padding: 0px 8px 44px 16px;
       display: inline-block;
       float: left;
     }
@@ -157,22 +157,29 @@ $color5: rgba(233, 188, 183, 1);
     /* applied to the element when moving */
       transition: transform .5s cubic-bezier(.55,0,.1,1);
   }
-  .favorite-icon {
-    font-family: font-awesome;
-    position: relative;
-    top: 0px;
-    border-radius: 0 4px 0px 0;
+  .settings-icons {
     font-size: 12px !important;
-    padding: 8px 16px 6px 16px;
-    margin-left: calc(100% - 20px);
+    position: relative;
+    top: 6px;
     display: inline;
     color: silver;
+  }
+  .favorite-icon {
+    font-family: font-awesome;
+    border-radius: 0 4px 0px 0;
+    padding: 8px 2px 6px 2px;
+
+  }
+  .close-icon {
+    font-family: font-awesome-solid;
+    margin-left: calc(100% - 32px);
+    top: 7px;
   }
   .favorite-icon-selected {
     color: orange;
     font-family: font-awesome-solid;
   }
-  .favorite-icon:hover {
+  .settings-icons:hover {
     cursor: pointer;
     color: orange;
   }
@@ -200,8 +207,10 @@ $color5: rgba(233, 188, 183, 1);
     <input type="text" v-model='search' id="searchbar" name="search" value="">
   <ul>
     <li class="bookmark-item" v-for="link in filteredBookmarks">
-      <i v-if="link.favorited" class="fas fa-star favorite-icon favorite-icon-selected" v-on:click="favoriteBookmark(link)"></i>
-      <i v-else class="far fa-star favorite-icon" v-on:click="favoriteBookmark(link)"></i>
+      <i class="fas fa-times close-icon settings-icons" v-on:click="removeBookmark(link)"></i>
+      <i v-if="link.favorited" class="fas fa-star favorite-icon favorite-icon-selected settings-icons" v-on:click="favoriteBookmark(link)"></i>
+      <i v-else class="far fa-star favorite-icon settings-icons" v-on:click="favoriteBookmark(link)"></i>
+      
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}}</a>
        <p> {{link.description}} </p>
@@ -278,8 +287,11 @@ $color5: rgba(233, 188, 183, 1);
           app.bookmarks.splice(link.lastlocation, 0, link)
           link.favorited = !link.favorited;
         },
-        post: function() {
-         
+        removeBookmark: function(link) {
+        let linkLocation = app.bookmarks.indexOf(link)
+          if (linkLocation !== -1) {
+          app.bookmarks.splice(linkLocation, 1)
+          }
         }
     },
     computed: {

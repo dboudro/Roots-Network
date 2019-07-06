@@ -20,6 +20,10 @@ $color5: rgba(233, 188, 183, 1);
     font-family: font-awesome;
     src: url('fonts/fa-regular-400.ttf');
     }
+    @font-face {
+    font-family: font-awesome-solid;
+    src: url('fonts/fa-solid-900.ttf');
+    }
     body {
       font-family: Helvetica;
       padding: 16px 32px;
@@ -162,8 +166,11 @@ $color5: rgba(233, 188, 183, 1);
     padding: 8px 16px 6px 16px;
     margin-left: calc(100% - 20px);
     display: inline;
-    border: 0px solid orange;
     color: silver;
+  }
+  .favorite-icon-selected {
+    color: orange;
+    font-family: font-awesome-solid;
   }
   .favorite-icon:hover {
     cursor: pointer;
@@ -192,8 +199,9 @@ $color5: rgba(233, 188, 183, 1);
     <button v-else id="new-bookmark-button" v-on:click="toggleShow()"> Add New Bookmark </button>
     <input type="text" v-model='search' id="searchbar" name="search" value="">
   <ul>
-    <li class="bookmark-item" v-for="link in filteredBookmarks" transition="link">
-      <i class="far fa-star favorite-icon" v-on:click="favoriteBookmark(link)"></i>
+    <li class="bookmark-item" v-for="link in filteredBookmarks">
+      <i v-if="link.favorited" class="fas fa-star favorite-icon favorite-icon-selected" v-on:click="favoriteBookmark(link)"></i>
+      <i v-else class="far fa-star favorite-icon" v-on:click="favoriteBookmark(link)"></i>
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}}</a>
        <p> {{link.description}} </p>
@@ -213,22 +221,22 @@ $color5: rgba(233, 188, 183, 1);
         newlinkdescription: "",
         search: '',
          bookmarks: [
-      { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'tutorial'},
-      { text: 'Awesome Vue.js Resources', hyperlink: 'https://github.com/vuejs/awesome-vue#youtube-channels', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'Vue.js'},
-      { text: 'HackerNews', hyperlink: 'https://news.ycombinator.com/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'computer science'},
-      { text: 'Zenhabits', hyperlink: 'https://zenhabits.net', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'meditation'},
-      { text: 'How to Get Rich by Naval Ravikant', hyperlink: 'https://twitter.com/naval/status/1002103360646823936', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'wisdom'},
-      { text: 'How to Be Successful by Sam Altman', hyperlink: 'http://blog.samaltman.com/how-to-be-successful', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'wisdom'},
-      { text: 'Design in Tech Report 2019', hyperlink: 'https://designintech.report/2019/03/09/design-in-tech-report-2019/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'website-gallery'},
-      { text: '1000 True Fans', hyperlink: 'https://kk.org/thetechnium/1000-true-fans/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'marketing'},
-      { text: 'Typewolf Adobe Fonts', hyperlink: 'https://www.typewolf.com/adobe-fonts', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'typography'},
-      { text: 'Morning Rituals by Tim Ferriss ', hyperlink: 'https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'habit building'},
-      { text: 'CSSTricks ', hyperlink: 'https://css-tricks.com', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'CSS'},
-      { text: 'Google 2004 Founder Letter', hyperlink: 'https://abc.xyz/investor founders-letters/2004-ipo-letter/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'wisdom'},
-      { text: 'Pentagram', hyperlink: 'http://www.pentagram.com/work/#/all/all/newest/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency'},
-      { text: 'Sagmeister & Walsh', hyperlink: 'https://sagmeisterwalsh.com/work/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency'},
-      { text: 'Harvard Meta Lab', hyperlink: 'https://metalabharvard.github.io/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency'},
-      { text: 'MIT Media Lab', hyperlink: 'https://www.media.mit.edu/research/?filter=projects', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency' },
+      { text: 'Material Design Dev Tutorials', hyperlink: 'https://material.io/collections/developer-tutorials/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'tutorial', favorited: false, lastlocation: -1 },
+      { text: 'Awesome Vue.js Resources', hyperlink: 'https://github.com/vuejs/awesome-vue#youtube-channels', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'Vue.js', favorited: false, lastlocation: -1 },
+      { text: 'HackerNews', hyperlink: 'https://news.ycombinator.com/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'computer science', favorited: false, lastlocation: -1 },
+      { text: 'Zenhabits', hyperlink: 'https://zenhabits.net', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'meditation', favorited: false, lastlocation: -1 },
+      { text: 'How to Get Rich by Naval Ravikant', hyperlink: 'https://twitter.com/naval/status/1002103360646823936', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'wisdom', favorited: false, lastlocation: -1 },
+      { text: 'How to Be Successful by Sam Altman', hyperlink: 'http://blog.samaltman.com/how-to-be-successful', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'wisdom', favorited: false, lastlocation: -1 },
+      { text: 'Design in Tech Report 2019', hyperlink: 'https://designintech.report/2019/03/09/design-in-tech-report-2019/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'website-gallery', favorited: false, lastlocation: -1 },
+      { text: '1000 True Fans', hyperlink: 'https://kk.org/thetechnium/1000-true-fans/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'marketing', favorited: false, lastlocation: -1 },
+      { text: 'Typewolf Adobe Fonts', hyperlink: 'https://www.typewolf.com/adobe-fonts', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'typography', favorited: false, lastlocation: -1 },
+      { text: 'Morning Rituals by Tim Ferriss ', hyperlink: 'https://fhww.files.wordpress.com/2018/09/tim-ferriss-5-morning-rituals.pdf', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'habit building', favorited: false, lastlocation: -1 },
+      { text: 'CSSTricks ', hyperlink: 'https://css-tricks.com', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'CSS', favorited: false, lastlocation: -1 },
+      { text: 'Google 2004 Founder Letter', hyperlink: 'https://abc.xyz/investor founders-letters/2004-ipo-letter/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'wisdom', favorited: false, lastlocation: -1 },
+      { text: 'Pentagram', hyperlink: 'http://www.pentagram.com/work/#/all/all/newest/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency', favorited: false, lastlocation: -1 },
+      { text: 'Sagmeister & Walsh', hyperlink: 'https://sagmeisterwalsh.com/work/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency', favorited: false, lastlocation: -1 },
+      { text: 'Harvard Meta Lab', hyperlink: 'https://metalabharvard.github.io/', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency', favorited: false, lastlocation: -1 },
+      { text: 'MIT Media Lab', hyperlink: 'https://www.media.mit.edu/research/?filter=projects', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel lectus ut turpis fermentum vestibulum. ', tag: 'creative agency' , favorited: false, lastlocation: -1 },
       { text: 'JSON Placeholder API', hyperlink: 'https://jsonplaceholder.typicode.com/', description: 'A fake online REST API tool for prototyping / testing simple http requests', tag: 'web-development' }
 
       
@@ -252,9 +260,23 @@ $color5: rgba(233, 188, 183, 1);
           app.show = !app.show
         },
         favoriteBookmark: function(link, event) {
+          if (link.favorited) {
+            this.unfavorite(link);
+          }
+          else {
           let linkLocation = app.bookmarks.indexOf(link)
+          link.lastlocation = linkLocation;
           app.bookmarks.splice(linkLocation, 1)
           app.bookmarks.unshift(link);
+          link.favorited = !link.favorited;
+          }
+        },
+        unfavorite: function(link, event) {
+          console.log('running unfavorite')
+          let linkLocation = app.bookmarks.indexOf(link)
+          app.bookmarks.splice(linkLocation, 1)
+          app.bookmarks.splice(link.lastlocation, 0, link)
+          link.favorited = !link.favorited;
         },
         post: function() {
          

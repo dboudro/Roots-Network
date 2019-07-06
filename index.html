@@ -5,6 +5,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   <style>
 
@@ -15,7 +16,10 @@ $color3: rgba(148, 161, 135, 1);
 $color4: rgba(197, 175, 160, 1);
 $color5: rgba(233, 188, 183, 1);
 
-*/
+*/  @font-face {
+    font-family: font-awesome;
+    src: url('fonts/fa-regular-400.ttf');
+    }
     body {
       font-family: Helvetica;
       padding: 16px 32px;
@@ -98,7 +102,7 @@ $color5: rgba(233, 188, 183, 1);
       border-radius: 4px;
       margin: 8px;
       width: calc(30% - 14px);
-      padding: 24px 16px 16px 16px;
+      padding: 0px 16px 44px 16px;
       display: inline-block;
       float: left;
     }
@@ -145,6 +149,26 @@ $color5: rgba(233, 188, 183, 1);
       vertical-align: middle;
       margin-left: 20px;
     }
+    .item-move, .link-move {
+    /* applied to the element when moving */
+      transition: transform .5s cubic-bezier(.55,0,.1,1);
+  }
+  .favorite-icon {
+    font-family: font-awesome;
+    position: relative;
+    top: 0px;
+    border-radius: 0 4px 0px 0;
+    font-size: 12px !important;
+    padding: 8px 16px 6px 16px;
+    margin-left: calc(100% - 20px);
+    display: inline;
+    border: 0px solid orange;
+    color: silver;
+  }
+  .favorite-icon:hover {
+    cursor: pointer;
+    color: orange;
+  }
 
     </style>
 </head>
@@ -168,7 +192,8 @@ $color5: rgba(233, 188, 183, 1);
     <button v-else id="new-bookmark-button" v-on:click="toggleShow()"> Add New Bookmark </button>
     <input type="text" v-model='search' id="searchbar" name="search" value="">
   <ul>
-    <li class="bookmark-item" v-for="link in filteredBookmarks">
+    <li class="bookmark-item" v-for="link in filteredBookmarks" transition="link">
+      <i class="far fa-star favorite-icon" v-on:click="favoriteBookmark(link)"></i>
       <a v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}}</a>
        <p> {{link.description}} </p>
@@ -225,6 +250,11 @@ $color5: rgba(233, 188, 183, 1);
         },
         toggleShow: function() {
           app.show = !app.show
+        },
+        favoriteBookmark: function(link, event) {
+          let linkLocation = app.bookmarks.indexOf(link)
+          app.bookmarks.splice(linkLocation, 1)
+          app.bookmarks.unshift(link);
         },
         post: function() {
          

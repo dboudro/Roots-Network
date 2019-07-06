@@ -3,6 +3,7 @@
 
 <head>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   <style>
@@ -145,7 +146,6 @@ $color5: rgba(233, 188, 183, 1);
       margin-left: 20px;
     }
 
-
     </style>
 </head>
 
@@ -161,10 +161,9 @@ $color5: rgba(233, 188, 183, 1);
         <input type="text" v-model="newlinkdescription" placeholder="description">
       </div>
         <div id="submit-div">
-          <button id='submit-button' v-on:click="addLink()">Submit</button> 
+          <button id='submit-button' v-on:click.prevent="addLink()">Submit</button> 
         </div>
         
-
      </div>
     <button v-else id="new-bookmark-button" v-on:click="toggleShow()"> Add New Bookmark </button>
     <input type="text" v-model='search' id="searchbar" name="search" value="">
@@ -209,21 +208,23 @@ $color5: rgba(233, 188, 183, 1);
       },
       methods: {
         addLink: function() {
-          app.bookmarks.push({ text: app.newlinkname, hyperlink: app.newlinkurl, description: app.newlinkdescription})
-          app.newlinkname = "";
-          app.newlinkurl = "";
-          app.newlinkdescription = "";
+          let newbookmark = { text: this.newlinkname, hyperlink: this.newlinkurl, description: this.newlinkdescription}
+          this.bookmarks.push(newbookmark)
+          this.newlinkname = "";
+          this.newlinkurl = "";
+          this.newlinkdescription = "";
           this.toggleShow()
+
+          // post to firebase 
+          this.$http.post('https://roots-network-69742.firebaseio.com/posts.json', newbookmark).then(function(data) {
+            console.log(data)
+          })
         },
         toggleShow: function() {
-          console.log(app.show)
           app.show = !app.show
         },
         post: function() {
-          this.$http.post('https://roots-network-69742.firebaseio.com/posts.json', this.bookmark).then(function(data) {
-            console.log(data)
-            this.submitted=true;
-          })
+         
         }
     },
     computed: {

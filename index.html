@@ -106,9 +106,9 @@ $color5: rgba(233, 188, 183, 1);
       color: black;
     }
     #submit-form {
-      margin-left: 300px;
+      margin-left: 224px;
       position: absolute;
-      top: 16px;
+      top: -1px;
       width: 400px;
       height: 80px;
       border: 1px solid #dddddd;
@@ -242,16 +242,16 @@ $color5: rgba(233, 188, 183, 1);
   <div id="app">
      
      <div id="navbar">
-      <h1 class="page-title"> <a href="/">Roots Network</a> </h1>
+      <h1 class="page-title"> <a href=".">Roots Network</a> </h1>
      <small id="tagline"> Stay connected </small>
      <input type="text" v-model='search' id="searchbar" name="search" value="">
      </div>
 
      <div id="config-bar">
      <p id="results-count">{{filteredBookmarks.length}} bookmarks</p>
-     <button id="config-button" v-on:click="toggleConfig"><i class="fas dl fa-tools"></i> Configuration</button>
+     <button id="config-button" v-on:click="toggleConfig"><i class="fas dl fa-tools"></i> Config</button>
+     <button id="new-bookmark-button" v-on:click="toggleShow()"> <i class="fas dl fa-bookmark"></i> New Bookmark </button>
      <button id="config-button" v-if='configurable' v-on:click="toggleEdit"><i class="far dl fa-edit"></i> Edit Bookmarks </button>
-     <button v-if='configurable' v-else id="new-bookmark-button" v-on:click="toggleShow()"> <i class="fas dl fa-bookmark"></i> New Bookmark </button>
     <button v-if="configurable" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
  Update Database</button>
     <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->

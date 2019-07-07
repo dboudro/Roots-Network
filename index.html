@@ -253,16 +253,16 @@ $color5: rgba(233, 188, 183, 1);
       },
       methods: {
         addLink: function() {
-          let newbookmark = { text: this.newlinkname, hyperlink: this.newlinkurl, description: this.newlinkdescription}
+          let newbookmark = { text: this.newlinkname, hyperlink: this.newlinkurl, description: this.newlinkdescription, tag: '', favorited: false, lastlocation: -1};
           this.bookmarks.push(newbookmark)
           this.newlinkname = "";
           this.newlinkurl = "";
           this.newlinkdescription = "";
+
           this.toggleShow()
 
           // post to firebase 
           this.$http.post('https://roots-network-69742.firebaseio.com/posts.json', newbookmark).then(function(data) {
-            console.log(data)
           })
         },
         toggleShow: function() {
@@ -273,12 +273,16 @@ $color5: rgba(233, 188, 183, 1);
             this.unfavorite(link);
           }
           else {
-          let linkLocation = app.bookmarks.indexOf(link)
-          link.lastlocation = linkLocation;
-          app.bookmarks.splice(linkLocation, 1)
-          app.bookmarks.unshift(link);
-          link.favorited = !link.favorited;
-          }
+            let linkLocation = app.bookmarks.indexOf(link)
+            link.lastlocation = linkLocation;
+            app.bookmarks.splice(linkLocation, 1)
+            app.bookmarks.unshift(link);
+            link.favorited = !link.favorited;
+            this.$http.put('https://roots-network-69742.firebaseio.com/posts.json', this.bookmarks).then(function(data) {
+              console.log('PUT FAV')
+          })
+
+            }
         },
         unfavorite: function(link, event) {
           console.log('running unfavorite')
@@ -286,13 +290,34 @@ $color5: rgba(233, 188, 183, 1);
           app.bookmarks.splice(linkLocation, 1)
           app.bookmarks.splice(link.lastlocation, 0, link)
           link.favorited = !link.favorited;
+          this.$http.put('https://roots-network-69742.firebaseio.com/posts.json', this.bookmarks).then(function(data) {
+              console.log('PUT UNFAV')
+          })
         },
         removeBookmark: function(link) {
         let linkLocation = app.bookmarks.indexOf(link)
           if (linkLocation !== -1) {
           app.bookmarks.splice(linkLocation, 1)
+          
+          this.$http.delete('https://roots-network-69742.firebaseio.com/posts/' + link.id + '/.json', link.id).then(function(data) {
+            console.log('https://roots-network-69742.firebaseio.com/posts/' + link.id + '/.json');
+          })
           }
         }
+    },
+    created() {
+      this.$http.get('https://roots-network-69742.firebaseio.com/posts.json').then(function(data) {
+          // this.bookmarks=data.body;
+            return data.json()
+          }).then(function(data){
+            let fireBookmarks = [];
+            for (let key in data) {
+              data[key].id = key;
+              fireBookmarks.push(data[key])
+            }
+            this.bookmarks = fireBookmarks;
+            // console.log(fireBookmarks)
+          })
     },
     computed: {
       filteredBookmarks: function() {

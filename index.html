@@ -42,7 +42,8 @@ $color5: rgba(233, 188, 183, 1);
     }
     small#tagline {
       position: absolute;
-      top: 48px;
+      top: 30px;
+      margin-left: 210px;
       color: rgba(148, 161, 135, 1);
     }
     #searchbar {
@@ -70,7 +71,7 @@ $color5: rgba(233, 188, 183, 1);
 }
     ul {
       margin-top: 0px;
-      padding: 0px 32px 0 32px;
+      padding: 100px 32px 0 32px;
       border-top: 0px solid #dddddd;
     }
     ul li {
@@ -112,6 +113,7 @@ $color5: rgba(233, 188, 183, 1);
       width: 400px;
       height: 80px;
       border: 1px solid #dddddd;
+      background-color: white;
     }
     #input-container {
       display: inline-block;
@@ -207,8 +209,8 @@ $color5: rgba(233, 188, 183, 1);
     font-size: 14px;
   }
   .edit-input {
-    display: block;
-    width: 200px;
+    display: inline-block;
+    width: 280px;
   }
   .dl {
     font-family: font-awesome-solid;
@@ -216,15 +218,24 @@ $color5: rgba(233, 188, 183, 1);
   }
   #navbar {
     border: 0px solid #acaaaa;
-    height: 80px;
-    width: 100%;
+    height: 70px;
+    width: calc(100% - 40px);
     padding: 0;
     margin-left: 40px;
+    position: fixed;
+    background-color: white;
+    z-index: 999999;
+    top: 0px;
   }
   #config-bar {
     border: 1px solid #ddd;
     height: 32px;
     padding-left: 40px;
+    margin-top: 54px;
+    position: fixed;
+    background-color: white;
+    width: calc(100% - 42px);
+    z-index: 999999;
   }
   #config-bar #config-button {
      margin: 0px 0 0 16px;
@@ -232,6 +243,9 @@ $color5: rgba(233, 188, 183, 1);
   button a {
     color: black;
     text-decoration: none;
+  }
+  div small a {
+    font-size: 14px;
   }
 
     </style>
@@ -243,7 +257,7 @@ $color5: rgba(233, 188, 183, 1);
      
      <div id="navbar">
       <h1 class="page-title"> <a href=".">Roots Network</a> </h1>
-     <small id="tagline"> Stay connected </small>
+     <small id="tagline"> stay connected. </small>
      <input type="text" v-model='search' id="searchbar" name="search" value="">
      </div>
 
@@ -276,11 +290,12 @@ $color5: rgba(233, 188, 183, 1);
       <i v-else class="far fa-star favorite-icon settings-icons" v-on:click="favoriteBookmark(link)"></i>
       
       <div v-if="editable">
-        <a class= "small-link" v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
-        {{link.text}}</a>
-        <input class="edit-input" v-model="link.text">
-        <input class="edit-input" v-model="link.description">
-        <input class="edit-input" v-model="link.tag">
+        <small><a v-bind:href=link.hyperlink>{{link.text}}</a></small>
+        <small>title: </small> <input class="edit-input" v-model="link.text">
+        <br>
+        <small>description: </small> <input class="edit-input" v-model="link.description">
+        <br>
+        <small>tag: </small> <input class="edit-input" v-model="link.tag">
       </div>
       <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
       {{link.text}}</a>

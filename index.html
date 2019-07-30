@@ -544,7 +544,7 @@ $color5: rgba(233, 188, 183, 1);
                     favorited: false,
                     lastlocation: -1
                 };
-                this.bookmarks.push(newbookmark)
+                this.bookmarks.splice(this.favoritedBookmarks().length, 0, newbookmark)
                 this.newlinkname = "";
                 this.newlinkurl = "";
                 this.newlinkdescription = "";
@@ -552,7 +552,8 @@ $color5: rgba(233, 188, 183, 1);
                 this.toggleShow()
 
                 // post to firebase
-                this.$http.post('https://roots-network-69742.firebaseio.com/posts.json', newbookmark).then(function (data) {
+                this.$http.post('https://roots-network-69742.firebaseio.com/chromes.json', newbookmark).then(function (data) {
+                  console.log(data)
                 })
             },
             toggleShow: function () {
@@ -602,6 +603,11 @@ $color5: rgba(233, 188, 183, 1);
                         console.log('https://roots-network-69742.firebaseio.com/chromes/' + link.id + '/.json');
                     })
                 }
+            },
+             favoritedBookmarks: function () {
+                return this.bookmarks.filter((bookmark) => {
+                    return bookmark.favorited === true;
+                });
             },
             genglobaltaglist: function() {
             },

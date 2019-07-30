@@ -5,8 +5,9 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
   
 </head>
@@ -30,6 +31,7 @@
     <button v-if="configurable" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
       Update Database
     </button>
+   <button id="globaltagbutton" v-for="item in popularTagsList">{{item.name}}</button> 
     <!-- <button id="globaltagbutton" v-for="item in globaltaglist">{{item.name}}</button> -->
     
     <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->
@@ -348,7 +350,6 @@
                 }
                 
               }
-              console.log(result)
               return result;
             },
             removeTag: function (link, tag) {
@@ -388,8 +389,31 @@
                 return this.bookmarks.filter((bookmark) => {
                     return bookmark.text.toLowerCase().match(this.search.toLowerCase())
                 });
+            },
+            // generate a list of tags and their counts with counts over 10
+            popularTagsList: function() {
+               return this.genglobaltaglist().filter((bookmark) => {
+                    return bookmark.count > 10;
+                });
+
+            },
+            // clean up popularTagsList (remove counts, just have tag names)
+        //     toptenTags: function() {
+        //       let result = [];
+        //       for (i = 0; i < this.popularTagsList.length; i++) {
+        //         console.log('run ')
+        //         result.push(this.popularTagsList[i].name)
+        //       }
+        //       return result;
+        // },
+        // filter resulting bookmarks by clicking a tag on the navbar
+        filteredTab: function () {
+                return this.bookmarks.filter((bookmark) => {
+                    return bookmark.text.toLowerCase().match(this.search.toLowerCase())
+                });
             }
         }
+            
     })
 </script>
 </body>

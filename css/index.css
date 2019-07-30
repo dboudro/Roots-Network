@@ -8,12 +8,12 @@ $color5: rgba(233, 188, 183, 1);
 */
     @font-face {
       font-family: font-awesome;
-      src: url('fonts/fa-regular-400.ttf');
+      src: url('../fonts/fa-regular-400.ttf');
     }
 
     @font-face {
       font-family: font-awesome-solid;
-      src: url('fonts/fa-solid-900.ttf');
+      src: url('../fonts/fa-solid-900.ttf');
     }
 
     body {

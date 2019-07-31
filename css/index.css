@@ -162,10 +162,10 @@ $color5: rgba(233, 188, 183, 1);
 
     button:focus {
       background-color: orange;
+      outline: none;
     }
 
     #config-bar button {
-      margin-top: 4px;
     }
 
     #submit-button {
@@ -268,6 +268,7 @@ $color5: rgba(233, 188, 183, 1);
       background-color: white;
       width: calc(100% - 42px);
       z-index: 999999;
+      padding-bottom: 8px;
     }
 
     #config-bar #config-button {

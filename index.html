@@ -31,7 +31,7 @@
     <button v-if="configurable" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
       Update Database
     </button>
-   <button id="globaltagbutton" v-for="item in popularTagsList">{{item.name}}</button> 
+   <button class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
     <!-- <button id="globaltagbutton" v-for="item in globaltaglist">{{item.name}}</button> -->
     
     <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->
@@ -328,6 +328,13 @@
                   }
                 }
             },
+            searchArrayBool: function(nameKey, myArray) {
+               for (var i=0; i < myArray.length; i++) {
+                  if (myArray[i] === nameKey) {
+                    return true;
+                  }
+                }
+            },
             genglobaltaglist: function() {
               let result = [];
               for (i = 0; i < this.bookmarks.length; i++ ) {
@@ -364,6 +371,9 @@
             addTag: function (link, tag) {
              link.taglist.push(link.newtag.toLowerCase());
              link.newtag = "";
+            },
+            tagFilter: function(tag) {
+              this.search = '_' + tag.name;
             }
         },
 
@@ -387,7 +397,16 @@
         computed: {
             filteredBookmarks: function () {
                 return this.bookmarks.filter((bookmark) => {
+                  // if searching by tag
+                  if (bookmark.taglist && this.search.substring(0, 1) === '_') {
+                     let searchCleaned = this.search.substring(1).toLowerCase()
+                     console.log(this.searchArrayBool(searchCleaned, bookmark.taglist))
+                     return this.searchArrayBool(searchCleaned, bookmark.taglist)
+                     }
+                     // if searching by title
+                  else {
                     return bookmark.text.toLowerCase().match(this.search.toLowerCase())
+                  }
                 });
             },
             // generate a list of tags and their counts with counts over 10
@@ -396,21 +415,6 @@
                     return bookmark.count > 10;
                 });
 
-            },
-            // clean up popularTagsList (remove counts, just have tag names)
-        //     toptenTags: function() {
-        //       let result = [];
-        //       for (i = 0; i < this.popularTagsList.length; i++) {
-        //         console.log('run ')
-        //         result.push(this.popularTagsList[i].name)
-        //       }
-        //       return result;
-        // },
-        // filter resulting bookmarks by clicking a tag on the navbar
-        filteredTab: function () {
-                return this.bookmarks.filter((bookmark) => {
-                    return bookmark.text.toLowerCase().match(this.search.toLowerCase())
-                });
             }
         }
             

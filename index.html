@@ -69,7 +69,8 @@
       </div>
       <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
         {{link.text}}</a>
-      <p> {{link.description}} </p>
+        <br>
+<!--       <p> {{link.description}} </p> -->
       <button v-for="tag in link.taglist" class="tag-button"> {{tag}}
         <i class="fas dl fa-minus-square" v-on:click="removeTag(link, tag)"></i></button>
     </li>
@@ -412,7 +413,7 @@
             // generate a list of tags and their counts with counts over 10
             popularTagsList: function() {
                return this.genglobaltaglist().filter((bookmark) => {
-                    return bookmark.count > 6;
+                    return bookmark.count > 2;
                 });
 
             }

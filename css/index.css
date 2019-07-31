@@ -164,7 +164,7 @@ $color5: rgba(233, 188, 183, 1);
     button:focus {
       background-color: orange;
       outline: none;
-    }
+    }   
 
     #config-bar button {
       margin-top: 8px;
@@ -185,7 +185,12 @@ $color5: rgba(233, 188, 183, 1);
     }
 
     .fa-minus-square {
+      color: #c5afa0 !important;
+    }
+
+     .tag-button:hover > i.fa-minus-square {
       color: beige !important;
+
     }
 
     .tag-button:hover {

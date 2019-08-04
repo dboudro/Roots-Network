@@ -103,6 +103,15 @@ $color5: rgba(233, 188, 183, 1);
   color: #ee8064 !important;
   }
 
+    .darkmode--activated .close-tag-icon {
+      color: #f8c9bd !important;
+    }
+
+     .darkmode--activated .tag-button:hover > .close-tag-icon {
+      color: #ee8064 !important;
+
+    }
+
     .page-title a {
       color: black;
       text-decoration: none;
@@ -254,12 +263,13 @@ $color5: rgba(233, 188, 183, 1);
       margin-bottom: 14px;
     }
 
-    .fa-minus-square {
+    .close-tag-icon {
       color: #ccc !important;
     }
 
-     .tag-button:hover > i.fa-minus-square {
+     .tag-button:hover > .close-tag-icon {
       color: beige !important;
+       visibility: visible;
 
     }
 
@@ -367,6 +377,10 @@ $color5: rgba(233, 188, 183, 1);
       top: 7px;
       visibility: hidden;
     }
+    .close-tag-icon {
+       font-family: font-awesome-solid;
+      visibility: hidden;
+     }
 
     .favorite-icon-selected {
       color: orange;

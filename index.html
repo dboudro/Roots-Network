@@ -76,7 +76,7 @@
         {{link.text}}</a>
 <!--       <p> {{link.description}} </p> -->
       <button v-for="tag in link.taglist" class="tag-button"> {{tag}}
-        <i class="fas dl fa-minus-square" v-on:click="removeTag(link, tag)"></i></button>
+        <i class="fas fa-times close-tag-icon" v-on:click="removeTag(link, tag)"></i></button>
     </li>
   </ul>
 </div>

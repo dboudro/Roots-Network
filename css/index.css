@@ -227,6 +227,15 @@ $color5: rgba(233, 188, 183, 1);
       cursor: pointer;
 
     }
+    .bookmark-item:hover > .favorite-icon {
+      visibility: visible;
+    }
+     .bookmark-item:hover > .close-icon {
+      visibility: visible;
+    }
+    .favorite-icon-selected {
+      visibility: visible !important;
+    }
 
     .bookmark-item p {
       font-size: 12px;
@@ -348,6 +357,7 @@ $color5: rgba(233, 188, 183, 1);
       font-family: font-awesome;
       border-radius: 0 4px 0px 0;
       padding: 8px 2px 6px 2px;
+      visibility: hidden;
 
     }
 
@@ -355,6 +365,7 @@ $color5: rgba(233, 188, 183, 1);
       font-family: font-awesome-solid;
       margin-left: calc(100% - 32px);
       top: 7px;
+      visibility: hidden;
     }
 
     .favorite-icon-selected {

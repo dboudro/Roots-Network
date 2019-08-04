@@ -50,17 +50,28 @@ $color5: rgba(233, 188, 183, 1);
   border: 1px solid #073642;
 }
 .darkmode--activated #config-bar button:hover {
-  background-color: orange;
-  border: none;
+  border: 1px solid #117f9b;
+  color: #117f9b;
 }
 .darkmode--activated #config-bar button:active {
-  background-color: orange;
-  border: none;
+  background-color: #117f9b;
+  color: white;
 }
 .darkmode--activated #searchbar {
   background-color: #073642;
   border: 1px solid #117f9b;
+  color: #ee8064;
 }
+
+.darkmode--activated #tagselect {
+  background-color: #073642;
+  border: 1px solid #117f9b;
+  color: #ee8064;
+  }
+
+  .darkmode--activated #select-container:after {
+    color: #117f9b !important;
+  }
 
 .darkmode--activated #app {
   background-color: #ffd4c9;
@@ -123,17 +134,42 @@ $color5: rgba(233, 188, 183, 1);
       top: 10px;
     }
 
-    select {
+  
+    #select-container {
+      display: inline-block;
+      width: 120px;
+      position: relative;
+      left: calc(100vw - 620px);
+      top: 10px;
+      height: 34px !important;
+    }
+
+    #select-container:after {
+      content: '\f0d7';
+      font-family: font-awesome-solid;
+      color: #acaaaa;
+      right: -6px;
+      /*Adjust for position however you want*/
+      top: 10px;
+      padding: 0 0 2px;
+      /*left line */
+      position: absolute;
+      pointer-events: none;
+}
+
+  #select-container select {
        -webkit-appearance: none; 
    -moz-appearance: none;
    appearance: none;
-      font-size: 11px;
+      font-size: 20px;
       border: 1px solid #dddddd;
-      height: 28px;
+      height: 34px;
       padding: 2px 6px;
       color: #29524a;
       font-weight: light;
       border-radius: 2px;
+      width: 140px;
+      font-weight: light;
     }
 
     input:focus {

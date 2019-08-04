@@ -215,6 +215,11 @@ $color5: rgba(233, 188, 183, 1);
       float: left;
       overflow: hidden;
     }
+    @media only screen and (max-width: 900px) {
+      .bookmark-item {
+         width: calc(96% - 14px);
+      }
+    }
       .bookmark-item:hover {
       background-color: #FAFAFA;
       box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.06), 0 5px 15px 0 rgba(0, 0, 0, 0.08);

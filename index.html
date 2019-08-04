@@ -18,7 +18,7 @@
 
   <div id="navbar">
     <h1 class="page-title"><a href=".">Roots Network</a></h1>
-    <small id="tagline"> stay connected.</small>
+    <small id="tagline"> bookmark manager</small>
     <input type="text" v-model='search' id="searchbar" name="search" value="">
   </div>
 
@@ -31,7 +31,9 @@
     <button v-if="configurable" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
       Update Database
     </button>
-   <button class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
+    <select id="tagselect">
+   <option class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</option>
+   </select>
     <!-- <button id="globaltagbutton" v-for="item in globaltaglist">{{item.name}}</button> -->
     
     <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->
@@ -60,16 +62,15 @@
         <small>title:</small>
         <input class="edit-input" v-model="link.text">
         <br>
-        <small>description:</small>
+<!--         <small>description:</small>
         <input class="edit-input" v-model="link.description">
-        <br>
+        <br> -->
         <small>tag:</small>
         <input class="edit-input" style="width: 80px" v-model="link.newtag"> 
         <button id="new-tag" v-on:click="addTag(link)"><i class="far dl fa-plus-square"></i></button>
       </div>
       <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
         {{link.text}}</a>
-        <br>
 <!--       <p> {{link.description}} </p> -->
       <button v-for="tag in link.taglist" class="tag-button"> {{tag}}
         <i class="fas dl fa-minus-square" v-on:click="removeTag(link, tag)"></i></button>
@@ -413,7 +414,7 @@
             // generate a list of tags and their counts with counts over 10
             popularTagsList: function() {
                return this.genglobaltaglist().filter((bookmark) => {
-                    return bookmark.count > 2;
+                    return bookmark.count > 3;
                 });
 
             }
@@ -421,6 +422,11 @@
             
     })
 </script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.4.0/lib/darkmode-js.min.js"></script>
+<script>
+  new Darkmode().showWidget();
+</script>
+
 </body>
 
 

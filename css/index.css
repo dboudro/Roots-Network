@@ -27,8 +27,70 @@ $color5: rgba(233, 188, 183, 1);
       font-size: 28px;
       position: absolute;
       top: 0px;
-
     }
+    #app {
+  height: 300vh;
+}
+
+
+.darkmode--activated h1.page-title a {
+  color: #cb4b16;
+}
+
+.darkmode--activated #tagline {
+  color: white;
+}
+
+.darkmode--activated #config-bar {
+ border: 1px solid #117f9b;
+}
+.darkmode--activated #config-bar button {
+  background-color: #073642;
+  color: #13819d;
+  border: 1px solid #073642;
+}
+.darkmode--activated #config-bar button:hover {
+  background-color: orange;
+  border: none;
+}
+.darkmode--activated #config-bar button:active {
+  background-color: orange;
+  border: none;
+}
+.darkmode--activated #searchbar {
+  background-color: #073642;
+  border: 1px solid #117f9b;
+}
+
+.darkmode--activated #app {
+  background-color: #ffd4c9;
+}
+.darkmode--activated #navbar {
+  background-color: #002b36;
+}
+.darkmode--activated #config-bar {
+  background-color: #002b36;
+}
+/* inverted */
+.darkmode--activated .bookmark-item a {
+  color: #168aa8;
+} 
+
+.darkmode--activated .bookmark-item:hover {
+  background-color: #faded7;
+}
+/* inverted */
+.darkmode--activated .tag-button {
+  border: 1px solid #f8c9bd;
+  background-color: #f8c9bd;
+  color: #ee8064;
+}
+/* inverted */
+.darkmode--activated .tag-button:hover {
+  background-color: #faded7;
+  border: 1px solid #ee8064;
+  color: #ee8064 !important;
+  }
 
     .page-title a {
       color: black;
@@ -61,6 +123,19 @@ $color5: rgba(233, 188, 183, 1);
       top: 10px;
     }
 
+    select {
+       -webkit-appearance: none; 
+   -moz-appearance: none;
+   appearance: none;
+      font-size: 11px;
+      border: 1px solid #dddddd;
+      height: 28px;
+      padding: 2px 6px;
+      color: #29524a;
+      font-weight: light;
+      border-radius: 2px;
+    }
+
     input:focus {
       border: 2px solid #59ABE3;
       border-opacity: .5;
@@ -69,7 +144,7 @@ $color5: rgba(233, 188, 183, 1);
 
     ul {
       margin-top: 0px;
-      padding: 140px 32px 0 32px;
+      padding: 110px 32px 0 32px;
       border-top: 0px solid #dddddd;
     }
 
@@ -81,13 +156,9 @@ $color5: rgba(233, 188, 183, 1);
     ul li a {
       color: #29524a;
       text-decoration: none;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: light;
 
-    }
-
-    ul li:hover {
-      background-color: #eeeeee;
     }
 
     ul li a:hover {
@@ -96,19 +167,59 @@ $color5: rgba(233, 188, 183, 1);
     }
 
     .bookmark-item {
-      height: 88px;
-      border: 1px solid #dddddd;
+      height: 44px;
+      border: 0px solid #dddddd;
+      box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.03), 0 5px 15px 0 rgba(0, 0, 0, 0.04);
+      transition: 0.18s ease-out;
       border-radius: 4px;
       margin: 8px;
-      width: calc(31% - 14px);
+      width: calc(44% - 14px);
       padding: 0px 8px 16px 16px;
       display: inline-block;
       float: left;
+      overflow: hidden;
+    }
+      .bookmark-item:hover {
+      background-color: #FAFAFA;
+      box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.06), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+      border: 0px solid #ccc;
+      cursor: pointer;
+
     }
 
     .bookmark-item p {
       font-size: 12px;
       color: black;
+    }
+
+      .tag-button {
+      background-color: #ccc;
+      border: 0px solid #acaaaa;
+      color: white;
+      margin-left: 0px;
+      margin-right: 4px;
+      border-radius: 12px;
+      padding-left: 10px;
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+
+    .fa-minus-square {
+      color: #ccc !important;
+    }
+
+     .tag-button:hover > i.fa-minus-square {
+      color: beige !important;
+
+    }
+
+    .tag-button:hover {
+      background-color: #acaaaa;
+      color: white !important;
+    }
+
+     .tag-button:active {
+      background-color: purple;
     }
 
     #submit-form {
@@ -166,6 +277,7 @@ $color5: rgba(233, 188, 183, 1);
       outline: none;
     }   
 
+
     #config-bar button {
       margin-top: 8px;
     }
@@ -176,26 +288,7 @@ $color5: rgba(233, 188, 183, 1);
       margin-left: 20px;
     }
 
-    .tag-button {
-      background-color: #c5afa0;
-      margin-left: 0px;
-      margin-right: 4px;
-      color: white;
-      border: 0px;
-    }
 
-    .fa-minus-square {
-      color: #c5afa0 !important;
-    }
-
-     .tag-button:hover > i.fa-minus-square {
-      color: beige !important;
-
-    }
-
-    .tag-button:hover {
-      background-color: orange;
-    }
 
     .item-move, .link-move {
       /* applied to the element when moving */
@@ -261,21 +354,22 @@ $color5: rgba(233, 188, 183, 1);
       padding: 0;
       margin-left: 40px;
       position: fixed;
-      background-color: white;
       z-index: 999999;
       top: 0px;
+      background-color: white;
     }
 
     #config-bar {
       border: 1px solid #ddd;
-      height: 70px;
+      height: 32px;
       padding-left: 40px;
       margin-top: 54px;
+      margin-left: -1px;
       position: fixed;
-      background-color: white;
-      width: calc(100% - 42px);
+      width: calc(100% - 40px);
       z-index: 999999;
       padding-bottom: 8px;
+      background-color: white;
     }
 
     #config-bar #config-button {

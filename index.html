@@ -21,7 +21,7 @@
     <small id="tagline"> bookmark manager</small>
         <div id="select-container">
     <select id="tagselect">
-   <option class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</option>
+   <option class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}} {{item.count}}</option>
    </select>
 </div>
     <input type="text" v-model='search' id="searchbar" name="search" value="">

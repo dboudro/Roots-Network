@@ -87,6 +87,9 @@ $color5: rgba(233, 188, 183, 1);
   color: #168aa8;
 } 
 
+.darkmode--activated .bookmark-item {
+  border: 1px solid #ee8064;
+}
 .darkmode--activated .bookmark-item:hover {
   background-color: #faded7;
 }
@@ -213,12 +216,12 @@ $color5: rgba(233, 188, 183, 1);
 
     .bookmark-item {
       height: 44px;
-      border: 0px solid #dddddd;
-      box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.03), 0 5px 15px 0 rgba(0, 0, 0, 0.04);
-      transition: 0.18s ease-out;
+      border: 1px solid #dddddd;
+      box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.01), 0 5px 15px 0 rgba(0, 0, 0, 0.01);
+      transition: ease-in box-shadow .12s;
       border-radius: 4px;
       margin: 8px;
-      width: calc(44% - 14px);
+      width: calc(49% - 32px);
       padding: 0px 8px 16px 16px;
       display: inline-block;
       float: left;
@@ -232,7 +235,7 @@ $color5: rgba(233, 188, 183, 1);
       .bookmark-item:hover {
       background-color: #FAFAFA;
       box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.06), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
-      border: 0px solid #ccc;
+     border: 1px solid #dddddd;
       cursor: pointer;
 
     }

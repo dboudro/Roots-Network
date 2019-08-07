@@ -29,11 +29,10 @@
 
   <div id="config-bar">
     <p id="results-count">{{filteredBookmarks.length}} bookmarks</p>
-    <button id="config-button" v-on:click="toggleConfig"><i class="fas dl fa-tools"></i> Config</button>
     <button id="new-bookmark-button" v-on:click="toggleShow()"><i class="fas dl fa-bookmark"></i> New Bookmark</button>
-    <button id="config-button" v-if='configurable' v-on:click="toggleEdit"><i class="far dl fa-edit"></i> Edit Bookmarks
+    <button id="config-button" v-on:click="toggleEdit"><i class="far dl fa-edit"></i> Edit Bookmarks
     </button>
-    <button v-if="configurable" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
+    <button id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
       Update Database
     </button>
 
@@ -88,7 +87,6 @@
         data: {
             show: false,
             editable: false,
-            configurable: false,
             newlinkname: "",
             newlinkurl: "",
             newlinkdescription: "",
@@ -278,9 +276,6 @@
             },
             toggleEdit: function () {
                 app.editable = !app.editable
-            },
-            toggleConfig: function () {
-                app.configurable = !app.configurable
             },
             favoriteBookmark: function (link, event) {
                 if (link.favorited) {

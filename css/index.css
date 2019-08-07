@@ -149,9 +149,9 @@ $color5: rgba(233, 188, 183, 1);
   
     #select-container {
       display: inline-block;
-      width: 120px;
+      width: 200px;
       position: relative;
-      left: calc(100vw - 620px);
+      left: calc(100vw - 660px);
       top: 10px;
       height: 34px !important;
     }
@@ -160,7 +160,7 @@ $color5: rgba(233, 188, 183, 1);
       content: '\f0d7';
       font-family: font-awesome-solid;
       color: #acaaaa;
-      right: -6px;
+      right: 26px;
       /*Adjust for position however you want*/
       top: 10px;
       padding: 0 0 2px;
@@ -180,7 +180,7 @@ $color5: rgba(233, 188, 183, 1);
       color: #29524a;
       font-weight: light;
       border-radius: 2px;
-      width: 140px;
+      width: 180px;
       font-weight: light;
     }
 

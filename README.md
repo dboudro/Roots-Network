@@ -12,3 +12,26 @@ Brian Norgard, The "architect of the top grossing app in the world", ![tweeted](
 The application currently uses Vue.js for view/model/controller creation and stores the lists of links in localstorage.  I hope to add 0auth user registration and a more comprehensive backend soon.
 
 I greatly appreciate any pull requests and help with development! Please feel free to reach out to collaborate on this project with me. `Dylanrboudro@gmail.com`
+
+
+
+# Themes 
+**Keep the network fresh via new theme.*
+*bladerunner.css* - orange theme minimal futuristic
+*compact.css* - 
+*illuminated.css*
+*rows.css*
+*cards.css*
+*forest.css*
+*lunar.css*
+*solarized.css*
+
+
+# Network Effects 
+
+[a16z - Two Powerful Mental Models: Network Effects and Critical Mass](https://a16z.com/2016/03/07/network-effects_critical-mass/)
+[a16z - 16 Ways to Measure Network Effects](https://a16z.com/2018/12/13/16-metrics-network-effects/)
+[a16z - All about Network Effects](https://a16z.com/2016/03/07/all-about-network-effects/)
+
+*networks prune over time* Design dynamic content highlights and updates to keep the network transitory, ever-evolving and excitingly new.
+

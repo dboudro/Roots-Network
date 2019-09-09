@@ -192,7 +192,7 @@ $color5: rgba(233, 188, 183, 1);
 
     ul {
       margin-top: 0px;
-      padding: 110px 32px 0 32px;
+      padding: 150px 32px 0 32px;
       border-top: 0px solid #dddddd;
     }
 
@@ -430,7 +430,7 @@ $color5: rgba(233, 188, 183, 1);
 
     #config-bar {
       border: 1px solid #ddd;
-      height: 32px;
+      height: 80px;
       padding-left: 40px;
       margin-top: 54px;
       margin-left: -1px;

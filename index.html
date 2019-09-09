@@ -19,11 +19,7 @@
   <div id="navbar">
     <h1 class="page-title"><a href=".">Roots Network</a></h1>
     <small id="tagline"> bookmark manager</small>
-        <div id="select-container">
-    <select id="tagselect">
-   <option class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</option>
-   </select>
-</div>
+
     <input type="text" v-model='search' id="searchbar" name="search" value="">
   </div>
 
@@ -36,7 +32,7 @@
       Update Database
     </button>
 
-    <!-- <button id="globaltagbutton" v-for="item in globaltaglist">{{item.name}}</button> -->
+      <button class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
     
     <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->
 

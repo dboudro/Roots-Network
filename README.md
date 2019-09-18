@@ -9,8 +9,9 @@ Brian Norgard, The "architect of the top grossing app in the world", ![tweeted](
 
 ## Stack
 
-Currently: Vue.js / Firebase 
-Future: Firebase / Laravel / Node / Vue.js / Semantic UI
+**Currently:** Vue.js / Firebase 
+
+**Future:** Firebase / Laravel / Node / Vue.js / Semantic UI
 
 I greatly appreciate any pull requests and help with development! Please feel free to reach out to collaborate on this project with me. `Dylanrboudro@gmail.com`
 

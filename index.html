@@ -50,7 +50,7 @@
       <i v-else class="far fa-star favorite-icon settings-icons" v-on:click="favoriteBookmark(link)"></i>
 
       <div v-if="editable">
-        <small><a v-bind:href=link.hyperlink>{{link.text}}</a></small>
+        <small><a v-bind:href=link.hyperlink >{{link.text}}</a></small>
         <small>title:</small>
         <input class="edit-input" v-model="link.text">
         <br>
@@ -61,7 +61,7 @@
         <input class="edit-input" style="width: 80px" v-model="link.newtag"> 
         <button id="new-tag" v-on:click="addTag(link)"><i class="far dl fa-plus-square"></i></button>
       </div>
-      <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
+      <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer" class="link-title">
         {{link.text}}</a>
       <p class="link-description"> {{link.description}} </p> 
       <button v-for="tag in link.taglist" class="tag-button"> {{tag}}

@@ -159,18 +159,6 @@ $color5: rgba(233, 188, 183, 1);
       color: black;
     }
 
-      .tag-button {
-      background-color: #ccc;
-      border: 0px solid #acaaaa;
-      color: white;
-      margin-left: 0px;
-      margin-right: 4px;
-      border-radius: 12px;
-      padding-left: 10px;
-      font-size: 11px;
-      margin-bottom: 14px;
-    }
-
     .close-tag-icon {
       color: #ccc !important;
     }
@@ -346,31 +334,6 @@ $color5: rgba(233, 188, 183, 1);
   padding: 0 6px;
   min-height: 100%;
 }
-#column-2 {
-  width:calc(85vw - 14px);
-  border: 0px solid purple;
-  display: inline-block;
-  background-color: #F7FAFC;
-  float: left;
-}
-.bookmark-item {
-  height: 120px;
-  border: 1px solid #dddddd;
-  box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.01), 0 5px 15px 0 rgba(0, 0, 0, 0.01);
-  transition: ease-in box-shadow .12s;
-  border-radius: 4px;
-  background-color: white;
-  margin: 8px;
-  width: calc(32% - 28px);
-  padding: 0px 8px 0px 16px;
-  display: inline-block;
-  float: left;
-  overflow: hidden;
-}
-.link-description {
-  margin: 10px 0px 8px 0px;
-  display: block;
-}
 .settings-button {
   width: 31%;
   background-color: #4A5568;
@@ -398,6 +361,50 @@ $color5: rgba(233, 188, 183, 1);
   background-color: #718096;
   color: #EDF2F7;
 }
+
+#column-2 {
+  width:calc(85vw - 14px);
+  border: 0px solid purple;
+  display: inline-block;
+  background-color: #F7FAFC;
+  float: left;
+}
+.bookmark-item {
+  height: 120px;
+  border: 1px solid #dddddd;
+  box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.01), 0 5px 15px 0 rgba(0, 0, 0, 0.01);
+  transition: ease-in box-shadow .12s;
+  border-radius: 4px;
+  background-color: white;
+  margin: 8px;
+  width: calc(32% - 28px);
+  padding: 0px 8px 0px 16px;
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+}
+
+.link-title {
+  color: #4A5568;
+}
+.link-description {
+  margin: 10px 0px 8px 0px;
+  display: block;
+  color: #718096 !important;
+}
+.tag-button {
+background-color: #FBD38D;
+border: 0px solid #718096;
+color: #ED8936;
+margin-left: 0px;
+margin-right: 4px;
+border-radius: 12px;
+padding-left: 10px;
+font-size: 11px;
+margin-bottom: 14px;
+}
+
+/* * * * sidenav update end * * * */
 
     #config-bar {
       border: 1px solid #ddd;

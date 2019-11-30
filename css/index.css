@@ -23,100 +23,18 @@ $color5: rgba(233, 188, 183, 1);
     }
 
     h1.page-title {
-      display: inline-block;
-      font-size: 28px;
-      position: absolute;
-      top: 0px;
+      display: block;
+      font-weight: normal;
+      font-size: 18px;
     }
     #app {
   height: 300vh;
 }
 
 
-.darkmode--activated h1.page-title a {
-  color: #cb4b16;
-}
-
-.darkmode--activated #tagline {
-  color: white;
-}
-
-.darkmode--activated #config-bar {
- border: 1px solid #117f9b;
-}
-.darkmode--activated #config-bar button {
-  background-color: #073642;
-  color: #13819d;
-  border: 1px solid #073642;
-}
-.darkmode--activated #config-bar button:hover {
-  border: 1px solid #117f9b;
-  color: #117f9b;
-}
-.darkmode--activated #config-bar button:active {
-  background-color: #117f9b;
-  color: white;
-}
-.darkmode--activated #searchbar {
-  background-color: #073642;
-  border: 1px solid #117f9b;
-  color: #ee8064;
-}
-
-.darkmode--activated #tagselect {
-  background-color: #073642;
-  border: 1px solid #117f9b;
-  color: #ee8064;
-  }
-
-  .darkmode--activated #select-container:after {
-    color: #117f9b !important;
-  }
-
-.darkmode--activated #app {
-  background-color: #ffd4c9;
-}
-.darkmode--activated #navbar {
-  background-color: #002b36;
-}
-.darkmode--activated #config-bar {
-  background-color: #002b36;
-}
-/* inverted */
-.darkmode--activated .bookmark-item a {
-  color: #168aa8;
-} 
-
-.darkmode--activated .bookmark-item {
-  border: 1px solid #ee8064;
-}
-.darkmode--activated .bookmark-item:hover {
-  background-color: #faded7;
-}
-/* inverted */
-.darkmode--activated .tag-button {
-  border: 1px solid #f8c9bd;
-  background-color: #f8c9bd;
-  color: #ee8064;
-}
-/* inverted */
-.darkmode--activated .tag-button:hover {
-  background-color: #faded7;
-  border: 1px solid #ee8064;
-  color: #ee8064 !important;
-  }
-
-    .darkmode--activated .close-tag-icon {
-      color: #f8c9bd !important;
-    }
-
-     .darkmode--activated .tag-button:hover > .close-tag-icon {
-      color: #ee8064 !important;
-
-    }
 
     .page-title a {
-      color: black;
+      color: #E2E8F0;
       text-decoration: none;
     }
 
@@ -129,21 +47,20 @@ $color5: rgba(233, 188, 183, 1);
 
     #searchbar {
       font-size: 20px;
-      border: 1px solid #dddddd;
+      border: 1px solid #718096;
       border-radius: 1px;
       outline: none;
       transition: border .2s;
       box-shadow: inset 0 0 0 0px #EEEEEE;
       outline-color: transparent;
+      background-color: #718096;
       height: 28px;
       padding: 2px 6px;
-      color: #29524a;
+      color: #EDF2F7;
       font-weight: light;
-      width: 350px;
+      width: 92%;
+      margin: 12px 0px 12px 0px ;
       border-radius: 2px;
-      position: absolute;
-      right: 48px;
-      top: 10px;
     }
 
   
@@ -192,7 +109,7 @@ $color5: rgba(233, 188, 183, 1);
 
     ul {
       margin-top: 0px;
-      padding: 150px 32px 0 32px;
+      padding: 48px 32px 0 32px;
       border-top: 0px solid #dddddd;
     }
 
@@ -214,19 +131,7 @@ $color5: rgba(233, 188, 183, 1);
       cursor: pointer;
     }
 
-    .bookmark-item {
-      height: 44px;
-      border: 1px solid #dddddd;
-      box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.01), 0 5px 15px 0 rgba(0, 0, 0, 0.01);
-      transition: ease-in box-shadow .12s;
-      border-radius: 4px;
-      margin: 8px;
-      width: calc(49% - 32px);
-      padding: 0px 8px 16px 16px;
-      display: inline-block;
-      float: left;
-      overflow: hidden;
-    }
+
     @media only screen and (max-width: 900px) {
       .bookmark-item {
          width: calc(96% - 14px);
@@ -396,10 +301,11 @@ $color5: rgba(233, 188, 183, 1);
     }
 
     #results-count {
-      color: #acaaaa;
-      margin: 0px 8px 2px 0px;
-      padding-top: 10px;
+      color: #A0AEC0;
+      margin: 0px 2px;
+      padding: 0px;
       display: inline-block;
+      float: right;
     }
 
     ul li a.small-link {
@@ -428,9 +334,70 @@ $color5: rgba(233, 188, 183, 1);
       background-color: white;
     }
 
+
+/* * * * sidenav update * * * */
+#column-1 {
+  width: 15vw;
+  border: 0px solid red;  
+  display: inline-block;
+  background-color: #4A5568;
+  color: #E2E8F0;
+  float: left;
+  padding: 0 6px;
+  min-height: 100%;
+}
+#column-2 {
+  width:calc(85vw - 14px);
+  border: 0px solid purple;
+  display: inline-block;
+  background-color: #F7FAFC;
+  float: left;
+}
+.bookmark-item {
+  height: 70px;
+  border: 1px solid #dddddd;
+  box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.01), 0 5px 15px 0 rgba(0, 0, 0, 0.01);
+  transition: ease-in box-shadow .12s;
+  border-radius: 4px;
+  background-color: white;
+  margin: 8px;
+  width: calc(32% - 28px);
+  padding: 0px 8px 16px 16px;
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+}
+.settings-button {
+  width: 31%;
+  background-color: #4A5568;
+  color: #CBD5E0;
+  border: #718096;
+  padding: 0px 0px 0px 0px !important;
+  margin: 0px 0px 12px 0px !important;
+}
+.settings-button:hover {
+  background-color: #4A5568;
+  border: 1px solid #718096;
+}
+.nav-tag {
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  padding-left: 0px !important;
+  margin-left: 0px;
+  background-color: #4A5568;
+  border: 1px solid #718096;
+  color: #718096;
+  height: 40px;
+}
+.nav-tag:hover {
+  background-color: #718096;
+  color: #EDF2F7;
+}
+
     #config-bar {
       border: 1px solid #ddd;
-      height: 80px;
+      width: 300px;
       padding-left: 40px;
       margin-top: 54px;
       margin-left: -1px;

@@ -16,23 +16,18 @@
 
 <div id="app">
 
-  <div id="navbar">
-    <h1 class="page-title"><a href=".">Roots Network</a></h1>
-    <small id="tagline"> bookmark manager</small>
-
-    <input type="text" v-model='search' id="searchbar" name="search" value="">
-  </div>
-
-  <div id="config-bar">
-    <p id="results-count">{{filteredBookmarks.length}} bookmarks</p>
-    <button id="new-bookmark-button" v-on:click="toggleShow()"><i class="fas dl fa-bookmark"></i> New Bookmark</button>
-    <button id="config-button" v-on:click="toggleEdit"><i class="far dl fa-edit"></i> Edit Bookmarks
+  <div id="column-1">
+    <h1 class="page-title"><a href=".">Roots Network</a> <span id="results-count">{{filteredBookmarks.length}}</span></h1>
+      <input type="text" v-model='search' id="searchbar" name="search" value="">
+    <button class="settings-button" id="new-bookmark-button" v-on:click="toggleShow()"><i class="fas dl fa-bookmark"></i> New</button>
+    <button  class="settings-button" id="config-button" v-on:click="toggleEdit"><i class="far dl fa-edit"></i> Edit
     </button>
-    <button id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
-      Update Database
+    <button  class="settings-button" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
+      Push
     </button>
+      <button class="nav-tag" class="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
 
-      <button class="nav-tag" id="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
+        </div>
     
     <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->
 
@@ -42,14 +37,13 @@
         <input class="half-input" type="text" v-model="newlinkurl" placeholder="url">
         <input type="text" v-model="newlinkdescription" placeholder="description">
       </div>
-      <div id="submit-div">
+      <div id="submit-div" >
         <button id='submit-button' v-on:click.prevent="addLink()">Submit</button>
       </div>
     </div>
 
-  </div>
-
-  <ul>
+<div id="column-2">
+  <ul >
     <li class="bookmark-item" v-for="link in filteredBookmarks">
       <i class="fas fa-times close-icon settings-icons" v-on:click="removeBookmark(link)"></i>
       <i v-if="link.favorited" class="fas fa-star favorite-icon favorite-icon-selected settings-icons" v-on:click="favoriteBookmark(link)"></i>
@@ -70,10 +64,12 @@
       <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
         {{link.text}}</a>
 <!--       <p> {{link.description}} </p> -->
+    <br>
       <button v-for="tag in link.taglist" class="tag-button"> {{tag}}
         <i class="fas fa-times close-tag-icon" v-on:click="removeTag(link, tag)"></i></button>
     </li>
   </ul>
+</div>
 </div>
 
 

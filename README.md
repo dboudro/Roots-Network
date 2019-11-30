@@ -7,9 +7,11 @@ The hyperlink is a fundamental concept of the internet.  Therefore the organizat
 
 Brian Norgard, The "architect of the top grossing app in the world", ![tweeted](https://twitter.com/BrianNorgard/status/1112760508510199808) that feeds are dead and private/group communication will be the next communication paradigm.  Roots Network supports this paradigm of high value private communication of value via hyperlinks.  
 
-## How is it built
+## Stack
 
-The application currently uses Vue.js for view/model/controller creation and stores the lists of links in localstorage.  I hope to add 0auth user registration and a more comprehensive backend soon.
+**Currently:** Vue.js / Firebase 
+
+**Future:** Firebase / Laravel / Node / Vue.js / Semantic UI
 
 I greatly appreciate any pull requests and help with development! Please feel free to reach out to collaborate on this project with me. `Dylanrboudro@gmail.com`
 
@@ -19,12 +21,12 @@ I greatly appreciate any pull requests and help with development! Please feel fr
 **Keep the network fresh via new theme.*
 *bladerunner.css* - orange theme minimal futuristic
 *compact.css* - 
-*illuminated.css*
-*rows.css*
-*cards.css*
-*forest.css*
-*lunar.css*
-*solarized.css*
+*illuminated.css* - 
+*rows.css* - 
+*cards.css* - 
+*forest.css* - 
+*lunar.css* - 
+*solarized.css* - 
 
 
 # Network Effects 

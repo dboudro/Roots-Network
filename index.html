@@ -54,17 +54,16 @@
         <small>title:</small>
         <input class="edit-input" v-model="link.text">
         <br>
-<!--         <small>description:</small>
+        <small>description:</small>
         <input class="edit-input" v-model="link.description">
-        <br> -->
+        <br> 
         <small>tag:</small>
         <input class="edit-input" style="width: 80px" v-model="link.newtag"> 
         <button id="new-tag" v-on:click="addTag(link)"><i class="far dl fa-plus-square"></i></button>
       </div>
       <a v-else v-bind:href=link.hyperlink target=_blank rel="noopener noreferrer">
         {{link.text}}</a>
-<!--       <p> {{link.description}} </p> -->
-    <br>
+      <p class="link-description"> {{link.description}} </p> 
       <button v-for="tag in link.taglist" class="tag-button"> {{tag}}
         <i class="fas fa-times close-tag-icon" v-on:click="removeTag(link, tag)"></i></button>
     </li>

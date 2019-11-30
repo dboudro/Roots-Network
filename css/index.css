@@ -138,7 +138,7 @@ $color5: rgba(233, 188, 183, 1);
       }
     }
       .bookmark-item:hover {
-      background-color: #FAFAFA;
+      background-color: white;
       box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.06), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
      border: 1px solid #dddddd;
       cursor: pointer;
@@ -354,7 +354,7 @@ $color5: rgba(233, 188, 183, 1);
   float: left;
 }
 .bookmark-item {
-  height: 70px;
+  height: 120px;
   border: 1px solid #dddddd;
   box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.01), 0 5px 15px 0 rgba(0, 0, 0, 0.01);
   transition: ease-in box-shadow .12s;
@@ -362,10 +362,14 @@ $color5: rgba(233, 188, 183, 1);
   background-color: white;
   margin: 8px;
   width: calc(32% - 28px);
-  padding: 0px 8px 16px 16px;
+  padding: 0px 8px 0px 16px;
   display: inline-block;
   float: left;
   overflow: hidden;
+}
+.link-description {
+  margin: 10px 0px 8px 0px;
+  display: block;
 }
 .settings-button {
   width: 31%;

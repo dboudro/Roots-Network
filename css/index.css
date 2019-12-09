@@ -242,6 +242,10 @@ $color5: rgba(233, 188, 183, 1);
       display: table-cell;
       vertical-align: middle;
       margin-left: 20px;
+      background-color: #4A5568;
+      color: #E2E8F0;
+      border: none;
+      outline: none;
     }
 
 

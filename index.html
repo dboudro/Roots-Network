@@ -5,17 +5,14 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
-
   <title> Roots Network - Strengthen your connection to the infinite information on the internet </title>
-  
 </head>
 
+<!------------ Sidebar -------------->
 <body>
-
 <div id="app">
-
   <div id="column-1">
     <h1 class="page-title"><a href=".">Roots Network</a> <span id="results-count">{{filteredBookmarks.length}}</span></h1>
       <input type="text" v-model='search' id="searchbar" name="search" value="">
@@ -26,11 +23,9 @@
       Push
     </button>
       <button class="nav-tag" class="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
+  </div>
 
-        </div>
-    
-    <!--  <button v-if="configurable" id="json-button"><i class="fas dl fa-download"></i> <a href="https://roots-network-69742.firebaseio.com/chromes" target=_blank rel="noopener noreferrer">Export json</a></button> -->
-
+<!------------ Add new link -------------->
     <div id="submit-form" v-if='show'>
       <div id="input-container">
         <input class="half-input" type="text" v-model="newlinkname" placeholder="name">
@@ -42,6 +37,7 @@
       </div>
     </div>
 
+<!-------------- Main Content: Bookmarks -------------->
 <div id="column-2">
   <ul >
     <li class="bookmark-item" v-for="link in filteredBookmarks">

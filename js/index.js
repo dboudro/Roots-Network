@@ -283,10 +283,16 @@
                   link.taglist.splice(i, 1);
                 }
               }
+              this.$http.put('https://roots-network-69742.firebaseio.com/chromes.json', this.bookmarks).then(function (data) {
+                    console.log('PUT removetag')
+                })
             },
             addTag: function (link, tag) {
              link.taglist.push(link.newtag.toLowerCase());
              link.newtag = "";
+             this.$http.put('https://roots-network-69742.firebaseio.com/chromes.json', this.bookmarks).then(function (data) {
+                    console.log('PUT addTag')
+                })
             },
             tagFilter: function(tag) {
               this.search = '_' + tag.name;

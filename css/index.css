@@ -182,8 +182,8 @@ $color5: rgba(233, 188, 183, 1);
       margin-left: 224px;
       position: absolute;
       top: -1px;
-      width: 400px;
-      height: 80px;
+      width: 520px;
+      height: 120px;
       border: 1px solid #dddddd;
       background-color: white;
     }
@@ -198,17 +198,24 @@ $color5: rgba(233, 188, 183, 1);
       display: inline-block;
       /*background-color: #94a187;*/
       width: 25%;
-      height: 26px;
-      padding: 26px 0;
+      height: 32px;
+      padding: 45px 0;
       float: right;
+    }
+    #submit-div button {
+      width: 80px;
+      height: 32px;
     }
 
     #submit-form input {
-      width: 292px;
-      height: 19px;
+      width: 360px;
+      height: 32px;
+      margin-top: 4px;
+      margin-left: 4px;
       outline: none;
       transition: border .2s;
-      box-shadow: inset 0 0 0 0px #EEEEEE;
+      border: 1px solid #e8e9ec;
+      border-radius: 4px;
       outline-color: transparent;
     }
 

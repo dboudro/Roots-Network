@@ -19,9 +19,6 @@
     <button class="settings-button" id="new-bookmark-button" v-on:click="toggleShow()"><i class="fas dl fa-bookmark"></i> New</button>
     <button  class="settings-button" id="config-button" v-on:click="toggleEdit"><i class="far dl fa-edit"></i> Edit
     </button>
-    <button  class="settings-button" id="update-button" v-on:click="put()"><i class="dl fas fa-database"></i>
-      Push
-    </button>
       <button class="nav-tag" class="globaltagbutton" v-for="item in popularTagsList" v-on:click="tagFilter(item)">{{item.name}}</button> 
   </div>
 
